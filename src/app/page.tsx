@@ -455,7 +455,7 @@ export default function HomePage() {
           </Reveal>
         </div>
         {(() => {
-          const [featured, ...rest] = insights.slice(0, 4);
+          const [featured, ...rest] = insights.slice(0, 4);if (!featured) return null;
           return (
             <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
               {/* Featured */}
