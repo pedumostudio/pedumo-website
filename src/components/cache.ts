@@ -19,7 +19,9 @@ export class LRUCache<K extends string, V> {
   private maxEntries: number;
   private maxSize: number;
   private ttlMs: number;
-  private onEvict?: (key: string, entry: CacheEntry<unknown>) => void;
+  private onEvict:
+  | ((key: string, entry: CacheEntry<unknown>) => void)
+  | undefined;
   private currentSize = 0;
   private accessOrder: K[] = [];
 
@@ -27,7 +29,7 @@ export class LRUCache<K extends string, V> {
     this.maxEntries = options.maxEntries ?? 500;
     this.maxSize = options.maxSize ?? 5 * 1024 * 1024; // 5MB
     this.ttlMs = options.ttlMs ?? 5 * 60 * 1000; // 5 minutes
-    this.onEvict = options.onEvict;
+    this.onEvict = options.onEvict ?? this.onEvict;
   }
 
   get(key: K): V | undefined {
@@ -94,11 +96,9 @@ export class LRUCache<K extends string, V> {
   }
 
   clear(): void {
-    if (this.onEvict) {
-      for (const [key, entry] of this.cache) {
-        this.onEvict(key, entry as CacheEntry<unknown>);
-      }
-    }
+    for (const [key, entry] of this.cache) {
+  this.onEvict(key, entry as CacheEntry<unknown>);
+}
     this.cache.clear();
     this.accessOrder = [];
     this.currentSize = 0;
@@ -139,7 +139,7 @@ export class LRUCache<K extends string, V> {
     if (entry) {
       this.currentSize -= entry.size;
       this.cache.delete(key);
-      this.onEvict?.(key, entry as CacheEntry<unknown>);
+      this.onEvict(key, entry as CacheEntry<unknown>);
     }
   }
 
