@@ -1,5 +1,4 @@
 "use client";
-
 import {
   createContext,
   useCallback,
@@ -11,7 +10,6 @@ import {
   useTransition,
   type ReactNode,
   type KeyboardEvent as ReactKeyboardEvent,
-  type MouseEvent,
 } from "react";
 
 import { useRouter } from "next/navigation";
@@ -44,7 +42,7 @@ import {
   loadAnalytics,
   saveAnalytics,
 } from "./storage";
-import { generateAIAnswer, parseQuery } from "./search-engine";
+import { generateAIAnswer } from "./search-engine";
 
 /* ═══════════════════════════════════════════════════════════════════════
    CONSTANTS
@@ -255,18 +253,19 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
           }
         };
         worker.addEventListener("message", handleMessage);
+
         worker.postMessage({
-          type: "search",
-          query: q,
-          options: {
-            maxResults: MAX_RESULTS,
-            favorites,
-            usage,
-            recent,
-            enableSemantic: true,
-            enableBM25: true,
-          },
-        });
+  type: "search",
+  query: q,
+  options: {
+    maxResults: MAX_RESULTS,
+    favorites,
+    usage,
+    recent,
+    enableSemantic: true,
+    enableBM25: true,
+  },
+});
       } else {
         // Fallback: main-thread search
         import("./search-engine").then(({ SearchEngine }) => {
@@ -288,7 +287,9 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    return () => controller.abort();
+    return () => {
+  controller.abort();
+};
   }, [debouncedQuery, isClient, favorites, usage, recent]);
 
   // Reset active when search changes
@@ -431,15 +432,15 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
         if (!openRef.current) return;
         event.preventDefault();
         const idx = parseInt(event.key, 10) - 1;
-        const current = scoredResults;
-        if (current[idx]) navigate(current[idx].doc);
+        const selected = scoredResults[idx];
+if (selected) navigate(selected.doc);
         return;
       }
 
       if (!openRef.current) return;
 
       const currentFiltered = scoredResults;
-      const maxIndex = Math.max(0, currentFiltered.length - 1);
+const maxIndex = Math.max(0, currentFiltered.length - 1);
 
       switch (event.key) {
         case "Escape": { event.preventDefault(); closePalette(); return; }
@@ -663,7 +664,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
                       </div>
 
                       {section.items.map((item, localIdx) => {
-                        const globalIdx = section.indices[localIdx];
+                       const globalIdx = section.indices[localIdx] ?? 0;
                         const isActive = globalIdx === active;
                         const isFav = favorites.includes(item.id);
                         const ItemIcon = item.icon ?? GROUP_ICONS[section.group] ?? Hash;
