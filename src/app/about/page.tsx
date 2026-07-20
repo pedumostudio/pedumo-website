@@ -39,7 +39,11 @@ export default function AboutPage() {
             <Reveal key={s.label} delay={i * 0.06}>
               <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-6 text-center">
                 <p className="gradient-text text-3xl font-semibold">
-                  <AnimatedCounter value={s.value} prefix={s.prefix} suffix={s.suffix} />
+                  <AnimatedCounter
+  value={s.value}
+  {...(s.prefix !== undefined ? { prefix: s.prefix } : {})}
+  {...(s.suffix !== undefined ? { suffix: s.suffix } : {})}
+/>
                 </p>
                 <p className="mt-2 text-sm text-[var(--muted)]">{s.label}</p>
               </div>
