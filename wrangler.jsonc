@@ -1,0 +1,51 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pedumo-website",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-07-01",
+
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_CACHE_KV",
+      "id": "9a069e0279314fc48b0ee18638ff7f94",
+      "remote": true
+    }
+  ],
+
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "BUCKET_CACHE_PURGE",
+        "class_name": "BucketCachePurge"
+      },
+      {
+        "name": "DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      },
+      {
+        "name": "DO_SHARDED_TAG_CACHE",
+        "class_name": "DOShardedTagCache"
+      }
+    ]
+  },
+
+  "migrations": [
+    {
+      "tag": "v2",
+      "new_sqlite_classes": [
+        "BucketCachePurge",
+        "DOQueueHandler",
+        "DOShardedTagCache"
+      ]
+    }
+  ]
+}

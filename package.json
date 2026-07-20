@@ -1,0 +1,83 @@
+{
+  "name": "pedumo",
+  "private": true,
+  "type": "module",
+
+  "engines": {
+    "node": ">=22"
+  },
+
+  "packageManager": "npm@10.9.2",
+
+  "description": "Pedumo is an enterprise software engineering and AI automation company building secure, scalable digital products.",
+
+  "homepage": "https://pedumo.com",
+
+  "author": "Balogun Adeolu",
+
+  "license": "UNLICENSED",
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedumostudio/pedumo-website"
+  },
+
+  "bugs": {
+    "url": "https://github.com/pedumostudio/pedumo/issues"
+  },
+
+ "scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+
+  "lint": "eslint . --max-warnings=0",
+  "lint:fix": "eslint . --fix",
+
+  "typecheck": "tsc --noEmit",
+
+  "check": "npm run lint && npm run typecheck",
+
+  "verify": "npm run check && npm run build",
+
+  "format": "prettier . --write",
+  "format:check": "prettier . --check",
+
+  "audit": "npm audit",
+
+  "cf:build": "npx opennextjs-cloudflare build",
+  "cf:deploy": "npx wrangler deploy"
+
+  },
+
+  "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.1",
+    "clsx": "^2.1.1",
+    "dotenv": "17.3.1",
+    "drizzle-orm": "0.45.2",
+    "framer-motion": "^12.42.2",
+    "lucide-react": "^1.23.0",
+    "next": "16.2.6",
+    "pg": "8.20.0",
+    "pg-cloudflare": "^1.4.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "tailwind-merge": "^3.6.0",
+    "wrangler": "^4.112.0"
+  },
+
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.17",
+    "@types/node": "22.19.15",
+    "@types/pg": "8.18.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "postcss": "8.5.8",
+    "tailwindcss": "4.1.17",
+    "typescript": "5.9.3",
+     "prettier": "^3.6.2"
+  }
+}

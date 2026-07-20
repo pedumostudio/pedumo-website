@@ -1,0 +1,6 @@
+Contact: mailto:ceo@pedumo.com
+Contact: https://pedumo.com/contact
+Preferred-Languages: en
+Canonical: https://pedumo.com/.well-known/security.txt
+Expires: 2027-01-01T00:00:00.000Z
+Policy: https://pedumo.com/security
