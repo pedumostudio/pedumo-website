@@ -42,7 +42,12 @@ export function InsightsBrowser() {
   }, [query, category]);
 
   const featured = insights.find((p) => p.featured) ?? insights[0];
-  const rest = filtered.filter((p) => p.slug !== featured.slug);
+
+if (!featured) {
+  return null;
+}
+
+const rest = filtered.filter((p) => p.slug !== featured.slug);
 
   const usedCategories = useMemo(() => {
     const set = new Set(insights.map((p) => p.category));

@@ -76,9 +76,22 @@ export function StaggerItem({
 }) {
   const reduce = useReducedMotion();
   return (
-    <motion.div className={className} variants={reduce ? undefined : itemVariants}>
+    if (reduce) {
+  return (
+    <motion.div className={className}>
       {children}
     </motion.div>
+  );
+}
+
+return (
+  <motion.div
+    className={className}
+    variants={itemVariants}
+  >
+    {children}
+  </motion.div>
+);
   );
 }
 
