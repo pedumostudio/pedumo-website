@@ -1,85 +1,44 @@
 import type { Metadata } from "next";
-import { LegalPage } from "@/components/legal-page";
-import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description:
-    "The terms that govern your use of the Pedumo website and the engagement of our services.",
+  description: "Terms of service for balogunadeolu.com.",
   alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
   return (
-    <LegalPage
-      eyebrow="Legal"
-      title="Terms of Service"
-      updated="January 2026"
-      sections={[
-        {
-          heading: "Acceptance of terms",
-          body: (
-            <p>
-              By accessing this website, you agree to these Terms of Service. If you do not
-              agree, please do not use the site. These terms apply to the website;
-              engagements for services are governed by separate written agreements.
-            </p>
-          ),
-        },
-        {
-          heading: "Use of the website",
-          body: (
-            <p>
-              You agree to use this website lawfully and not to interfere with its
-              operation or security. Content on this site is provided for general
-              information and does not constitute professional advice.
-            </p>
-          ),
-        },
-        {
-          heading: "Intellectual property",
-          body: (
-            <p>
-              All content, branding and materials on this site are the property of{" "}
-              {siteConfig.legalName} unless otherwise stated, and may not be reproduced
-              without permission. Open-source projects are governed by their respective
-              licenses.
-            </p>
-          ),
-        },
-        {
-          heading: "Service engagements",
-          body: (
-            <p>
-              Any services we provide are defined in a separate statement of work or
-              agreement that sets out scope, deliverables, fees and responsibilities.
-              Nothing on this website constitutes a binding offer.
-            </p>
-          ),
-        },
-        {
-          heading: "Limitation of liability",
-          body: (
-            <p>
-              This website is provided &ldquo;as is&rdquo; without warranties of any kind.
-              To the maximum extent permitted by law, {siteConfig.legalName} is not liable
-              for any damages arising from your use of the website.
-            </p>
-          ),
-        },
-        {
-          heading: "Contact",
-          body: (
-            <p>
-              Questions about these terms can be sent to{" "}
-              <a className="text-brand-500" href={`mailto:${siteConfig.email}`}>
-                {siteConfig.email}
-              </a>
-              .
-            </p>
-          ),
-        },
-      ]}
-    />
+    <div className="mx-auto max-w-3xl px-5 py-24 sm:px-8">
+      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">Terms of Service</h1>
+      <p className="mt-4 text-sm text-[var(--muted)]">Last updated: July 2026</p>
+
+      <div className="mt-8 space-y-6 text-[var(--muted)] leading-relaxed">
+        <p>
+          This website is the personal website of Balogun Adeolu. By accessing this
+          website, you agree to these terms.
+        </p>
+
+        <h2 className="text-xl font-semibold text-[var(--foreground)]">Content</h2>
+        <p>
+          All content on this website is owned by Balogun Adeolu unless otherwise noted.
+          You may not reproduce, distribute, or create derivative works from this content
+          without written permission.
+        </p>
+
+        <h2 className="text-xl font-semibold text-[var(--foreground)]">Links</h2>
+        <p>
+          This website may contain links to external websites. We are not responsible for
+          the content or privacy practices of those websites.
+        </p>
+
+        <h2 className="text-xl font-semibold text-[var(--foreground)]">Contact</h2>
+        <p>
+          If you have questions about these terms, please contact us at{" "}
+          <a href="mailto:adeolu@balogunadeolu.com" className="text-accent-500 hover:underline">
+            adeolu@balogunadeolu.com
+          </a>.
+        </p>
+      </div>
+    </div>
   );
 }

@@ -1,93 +1,156 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Clock, CalendarCheck } from "lucide-react";
-import { PageHero } from "@/components/page-hero";
+import { ArrowUpRight } from "lucide-react";
 import { Section } from "@/components/section";
-import { ContactForm } from "@/components/contact-form";
 import { Reveal } from "@/components/motion";
-import { ButtonLink } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
+import { Breadcrumb } from "@/components/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Pedumo. Share your project, ask a question, or book a consultation with a senior engineer.",
+    "Get in touch with Balogun Adeolu — for speaking engagements, strategic advisory, technology partnerships, or general inquiries.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact — Balogun Adeolu",
+    description: "Get in touch with Balogun Adeolu.",
+    url: "/contact",
+  },
 };
 
-const details = [
-  { icon: Mail, title: "General", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
-  {
-    icon: CalendarCheck,
-    title: "Bookings",
-    value: siteConfig.bookingEmail,
-    href: `mailto:${siteConfig.bookingEmail}`,
-  },
-  { icon: MapPin, title: "Location", value: "Remote-first · Serving clients worldwide" },
-  { icon: Clock, title: "Business hours", value: "Mon–Fri · 9:00–18:00 (GMT)" },
-];
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Balogun Adeolu",
+  description: "Get in touch with Balogun Adeolu.",
+  url: `${siteConfig.url}/contact`,
+};
 
 export default function ContactPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Contact"
-        title={
-          <>
-            Let&apos;s talk about <span className="gradient-text">your project</span>
-          </>
-        }
-        description="Tell us what you're building or the problem you need solved. You'll hear back from a real engineer, not a sales script."
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <Breadcrumb items={[{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]} />
+      </div>
 
-      <Section className="!pt-10">
-        <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+      {/* ── Hero ── */}
+      <section className="pb-12 pt-16">
+        <div className="mx-auto max-w-3xl px-5 sm:px-8">
           <Reveal>
-            <ContactForm />
+            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[var(--muted)]">
+              Contact
+            </p>
           </Reveal>
+          <Reveal delay={0.08}>
+            <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
+              Let&apos;s build something that matters.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-7 text-lg leading-relaxed text-[var(--muted)]">
+              Whether you need a technology partner, a strategic advisor, a speaker for your
+              next event, or simply want to connect — I would like to hear from you.
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
-          <Reveal delay={0.1}>
-            <div className="flex flex-col gap-4">
-              {details.map((d) => (
-                <div
-                  key={d.title}
-                  className="flex items-start gap-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5"
-                >
-                  <span className="inline-grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-[var(--border)] bg-[var(--background-subtle)] text-brand-500">
-                    <d.icon className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <p className="text-sm font-semibold">{d.title}</p>
-                    {d.href ? (
+      {/* ── Contact Options ── */}
+      <Section className="section-divider !py-24">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid gap-6 sm:grid-cols-2">
+            {[
+              {
+                title: "Speaking & Events",
+                description: "Keynotes, panels, workshops, and interviews on technology leadership, cybersecurity, and the discipline of building companies that last.",
+                email: siteConfig.personalLinks.email,
+                label: "Speaking inquiry",
+              },
+              {
+                title: "Strategic Advisory",
+                description: "Technology strategy, architecture reviews, security assessments, and guidance for organizations making critical technology decisions.",
+                email: siteConfig.personalLinks.email,
+                label: "Advisory inquiry",
+              },
+              {
+                title: "Technology Partnership",
+                description: "For organizations looking to work with Pedumo on software engineering, AI automation, cybersecurity, or cloud infrastructure.",
+                email: siteConfig.personalLinks.email,
+                label: "Partnership inquiry",
+                external: "https://pedumo.com/contact",
+              },
+              {
+                title: "General Inquiry",
+                description: "For anything else — a conversation, a question, or just to say hello.",
+                email: siteConfig.personalLinks.email,
+                label: "Send a message",
+              },
+            ].map((option, i) => (
+              <Reveal key={option.title} delay={i * 0.05}>
+                <div className="flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8">
+                  <h3 className="text-xl font-semibold tracking-tight">
+                    {option.title}
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">
+                    {option.description}
+                  </p>
+                  <div className="mt-6">
+                    {option.external ? (
                       <a
-                        href={d.href}
-                        className="text-sm text-[var(--muted)] transition-colors hover:text-brand-500"
+                        href={option.external}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-colors hover:opacity-90"
                       >
-                        {d.value}
+                        {option.label}
+                        <ArrowUpRight className="h-3.5 w-3.5" />
                       </a>
                     ) : (
-                      <p className="text-sm text-[var(--muted)]">{d.value}</p>
+                      <a
+                        href={`mailto:${option.email}?subject=${encodeURIComponent(option.label)}`}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--foreground)] px-5 py-2.5 text-sm font-medium text-[var(--background)] transition-colors hover:opacity-90"
+                      >
+                        {option.label}
+                      </a>
                     )}
                   </div>
                 </div>
-              ))}
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </Section>
 
-              <div className="rounded-2xl border border-[var(--border)] bg-gradient-to-br from-brand-600 to-brand-800 p-6 text-white">
-                <CalendarCheck className="h-6 w-6" />
-                <h3 className="mt-3 text-lg font-semibold">Prefer to book directly?</h3>
-                <p className="mt-1 text-sm text-white/80">
-                  Reserve a consultation slot and come prepared with your questions.
-                </p>
-                <ButtonLink
-                  href="/book"
-                  variant="secondary"
-                  size="sm"
-                  className="mt-4"
-                >
-                  Book a consultation
-                </ButtonLink>
-              </div>
-            </div>
+      {/* ── Connect ── */}
+      <Section className="!py-24">
+        <div className="mx-auto max-w-3xl">
+          <Reveal>
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
+              Connect
+            </p>
           </Reveal>
+          <div className="mt-8 flex flex-wrap gap-4">
+            {[
+              { label: "LinkedIn", href: siteConfig.personalLinks.linkedin },
+              { label: "GitHub", href: siteConfig.personalLinks.github },
+              { label: "X", href: siteConfig.personalLinks.x },
+              { label: "Email", href: `mailto:${siteConfig.personalLinks.email}` },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] px-5 py-2.5 text-sm font-medium text-[var(--muted)] transition-colors hover:border-accent-500/40 hover:text-accent-500"
+              >
+                {link.label}
+                {!link.href.startsWith("mailto") && <ArrowUpRight className="h-3.5 w-3.5" />}
+              </a>
+            ))}
+          </div>
         </div>
       </Section>
     </>

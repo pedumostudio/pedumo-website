@@ -8,7 +8,12 @@ import { useCookies } from "@/components/cookie-provider";
  * provider IDs are read from NEXT_PUBLIC_* env vars so the site ships
  * with zero tracking until configured and consented.
  *
- * Supported: Google Analytics 4, Microsoft Clarity, Plausible Analytics.
+ * Supported: Google Analytics 4, Microsoft Clarity, Plausible Analytics,
+ * Cloudflare Web Analytics (beacon token).
+ *
+ * Cloudflare Web Analytics is privacy-first (no cookies, no personal data),
+ * so it respects the consent model by loading only after analytics consent
+ * is granted.
  */
 export function AnalyticsLoader() {
   const { consent } = useCookies();
@@ -21,6 +26,7 @@ export function AnalyticsLoader() {
     const gaId = process.env.NEXT_PUBLIC_GA4_ID;
     const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
     const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+    const cfBeacon = process.env.NEXT_PUBLIC_CF_BEACON;
 
     if (gaId) {
       const s = document.createElement("script");
@@ -36,7 +42,7 @@ export function AnalyticsLoader() {
       const s = document.createElement("script");
       s.type = "text/javascript";
       s.async = true;
-      s.innerHTML = `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${clarityId}");`;
+      s.innerHTML = `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/\"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${clarityId}");`;
       document.head.appendChild(s);
     }
 
@@ -46,6 +52,14 @@ export function AnalyticsLoader() {
       s.defer = true;
       s.setAttribute("data-domain", plausibleDomain);
       s.src = "https://plausible.io/js/script.js";
+      document.head.appendChild(s);
+    }
+
+    if (cfBeacon) {
+      const s = document.createElement("script");
+      s.async = true;
+      s.setAttribute("data-cf-beacon", `{\"token\": \"${cfBeacon}\"}`);
+      s.src = "https://static.cloudflareinsights.com/beacon.min.js";
       document.head.appendChild(s);
     }
   }, [consent.analytics]);

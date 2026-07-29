@@ -1,8 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "pedumo-website",
+  "name": "balogunadeolu-website",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2026-07-01",
+  "compatibility_date": "2025-04-01",
 
   "compatibility_flags": [
     "nodejs_compat"
@@ -13,39 +13,31 @@
     "binding": "ASSETS"
   },
 
-  "kv_namespaces": [
+  "services": [
     {
-      "binding": "NEXT_CACHE_KV",
-      "id": "9a069e0279314fc48b0ee18638ff7f94",
-      "remote": true
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "balogunadeolu-website"
     }
   ],
+
+  "images": {
+    "binding": "IMAGES"
+  },
 
   "durable_objects": {
     "bindings": [
       {
-        "name": "BUCKET_CACHE_PURGE",
-        "class_name": "BucketCachePurge"
-      },
-      {
-        "name": "DO_QUEUE",
+        "name": "NEXT_CACHE_DO_QUEUE",
         "class_name": "DOQueueHandler"
       },
       {
-        "name": "DO_SHARDED_TAG_CACHE",
+        "name": "NEXT_TAG_CACHE_DO_SHARDED",
         "class_name": "DOShardedTagCache"
+      },
+      {
+        "name": "NEXT_CACHE_DO_PURGE",
+        "class_name": "BucketCachePurge"
       }
     ]
-  },
-
-  "migrations": [
-    {
-      "tag": "v2",
-      "new_sqlite_classes": [
-        "BucketCachePurge",
-        "DOQueueHandler",
-        "DOShardedTagCache"
-      ]
-    }
-  ]
+  }
 }

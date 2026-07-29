@@ -6,15 +6,15 @@ type Variant = "primary" | "secondary" | "ghost" | "outline";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[background-color,box-shadow,transform,border-color,color] duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:pointer-events-none disabled:opacity-60 whitespace-nowrap";
+  "group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[background-color,box-shadow,transform,border-color,color] duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500 disabled:pointer-events-none disabled:opacity-60 whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand-600 text-white shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_8px_22px_-10px_rgba(33,64,232,0.75)] hover:bg-brand-500 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.22),0_12px_30px_-10px_rgba(33,64,232,0.85)] active:scale-[0.98]",
-  secondary:
     "bg-[var(--foreground)] text-[var(--background)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08)] hover:opacity-90 active:scale-[0.98]",
+  secondary:
+    "bg-accent-500 text-white shadow-[0_4px_12px_-4px_rgba(176,138,46,0.4)] hover:bg-accent-600 active:scale-[0.98]",
   outline:
-    "border border-[var(--border-strong)] bg-[var(--card)]/40 text-[var(--foreground)] hover:border-brand-500/50 hover:bg-[var(--background-subtle)] active:scale-[0.98]",
+    "border border-[var(--border-strong)] bg-[var(--card)]/40 text-[var(--foreground)] hover:border-accent-500/50 hover:bg-[var(--background-subtle)] active:scale-[0.98]",
   ghost:
     "text-[var(--foreground)] hover:bg-[var(--background-subtle)] active:scale-[0.98]",
 };

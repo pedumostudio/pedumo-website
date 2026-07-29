@@ -1,870 +1,352 @@
-import type { LucideIcon } from "lucide-react";
-import {
-  Code2,
-  Boxes,
-  Workflow,
-  BrainCircuit,
-  Bot,
-  Cloud,
-  GitBranch,
-  ShieldCheck,
-  Plug,
-  Database,
-  BarChart3,
-  Palette,
-  Compass,
-  RefreshCcw,
-  Gauge,
-  LifeBuoy,
-  Rocket,
-  Building2,
-  Landmark,
-  HeartHandshake,
-  Store,
-  Search,
-  PenTool,
-  Layers,
-  TestTube2,
-  Radar,
-} from "lucide-react";
+/**
+ * Balogun Adeolu — Personal Website Content
+ *
+ * All content is about the founder as a person, leader, and builder.
+ * Pedumo appears as one chapter of his journey.
+ */
 
-export type Service = {
-  slug: string;
-  title: string;
-  icon: LucideIcon;
-  summary: string;
-  outcomes: string[];
-};
-
-export const services: Service[] = [
-  {
-    slug: "software-engineering",
-    title: "Software Engineering",
-    icon: Code2,
-    summary:
-      "Production-grade systems built by engineers who own outcomes, not just tickets. Clean architecture, tested code, documented decisions.",
-    outcomes: ["Maintainable codebases", "Faster release cycles", "Lower defect rates"],
-  },
-  {
-    slug: "custom-web-applications",
-    title: "Custom Web Applications",
-    icon: Layers,
-    summary:
-      "Fast, accessible web products engineered on modern React and Next.js foundations that scale with your business.",
-    outcomes: ["Sub-second load times", "SEO-ready by default", "Conversion-focused UX"],
-  },
-  {
-    slug: "enterprise-software",
-    title: "Enterprise Software",
-    icon: Building2,
-    summary:
-      "Mission-critical platforms with role-based access, auditability and integrations across your existing tools.",
-    outcomes: ["Regulatory readiness", "Single source of truth", "Reduced operational cost"],
-  },
-  {
-    slug: "business-automation",
-    title: "Business Automation",
-    icon: Workflow,
-    summary:
-      "We map your operations and replace repetitive manual work with reliable, observable automated workflows.",
-    outcomes: ["Hours recovered weekly", "Fewer human errors", "Scalable operations"],
-  },
-  {
-    slug: "ai-integration",
-    title: "AI Integration",
-    icon: BrainCircuit,
-    summary:
-      "Practical AI embedded into your products and processes — grounded, evaluated and safe for real business use.",
-    outcomes: ["Augmented teams", "Faster decisions", "Measurable ROI"],
-  },
-  {
-    slug: "ai-workflow-automation",
-    title: "AI Workflow Automation",
-    icon: Bot,
-    summary:
-      "Agentic and rule-based automations that connect your systems, tools and data with human oversight where it matters.",
-    outcomes: ["24/7 operations", "Auto-triaged work", "Consistent quality"],
-  },
-  {
-    slug: "cloud-engineering",
-    title: "Cloud Engineering",
-    icon: Cloud,
-    summary:
-      "Resilient cloud infrastructure designed for cost efficiency, elasticity and uptime you can build a business on.",
-    outcomes: ["High availability", "Predictable spend", "Elastic scale"],
-  },
-  {
-    slug: "devops",
-    title: "DevOps",
-    icon: GitBranch,
-    summary:
-      "Automated pipelines, infrastructure as code and observability so your team ships confidently and often.",
-    outcomes: ["Reliable deployments", "Fast rollbacks", "Full visibility"],
-  },
-  {
-    slug: "cybersecurity",
-    title: "Cybersecurity",
-    icon: ShieldCheck,
-    summary:
-      "Security engineered in from day one — threat modeling, hardening, encryption and continuous monitoring.",
-    outcomes: ["Reduced attack surface", "Compliance alignment", "Customer trust"],
-  },
-  {
-    slug: "api-development",
-    title: "API Development",
-    icon: Plug,
-    summary:
-      "Versioned, documented and rate-limited APIs that make your platform a foundation partners can rely on.",
-    outcomes: ["Faster integrations", "Developer-friendly", "Stable contracts"],
-  },
-  {
-    slug: "database-engineering",
-    title: "Database Engineering",
-    icon: Database,
-    summary:
-      "Data models, indexing and query design that stay fast and correct as your data grows into the millions.",
-    outcomes: ["Query performance", "Data integrity", "Scalable schemas"],
-  },
-  {
-    slug: "data-analytics",
-    title: "Data Analytics",
-    icon: BarChart3,
-    summary:
-      "Turn raw operational data into dashboards and signals leaders actually use to make decisions.",
-    outcomes: ["Clear KPIs", "Real-time insight", "Better forecasting"],
-  },
-  {
-    slug: "ui-ux-design",
-    title: "UI/UX Design",
-    icon: Palette,
-    summary:
-      "Research-led product design that reduces friction, increases adoption and looks unmistakably premium.",
-    outcomes: ["Higher adoption", "Lower support load", "Brand credibility"],
-  },
-  {
-    slug: "technical-consulting",
-    title: "Technical Consulting",
-    icon: Compass,
-    summary:
-      "Senior guidance on architecture, hiring, technology choices and roadmaps from people who have shipped.",
-    outcomes: ["De-risked decisions", "Clear roadmaps", "Aligned teams"],
-  },
-  {
-    slug: "application-modernization",
-    title: "Application Modernization",
-    icon: RefreshCcw,
-    summary:
-      "Migrate legacy systems to modern, maintainable architectures without stopping the business.",
-    outcomes: ["Reduced tech debt", "New capabilities", "Lower maintenance"],
-  },
-  {
-    slug: "performance-optimization",
-    title: "Performance Optimization",
-    icon: Gauge,
-    summary:
-      "We profile, measure and eliminate bottlenecks across frontend, backend and infrastructure.",
-    outcomes: ["Faster experiences", "Lower infra cost", "Higher conversion"],
-  },
-  {
-    slug: "maintenance-support",
-    title: "Maintenance & Support",
-    icon: LifeBuoy,
-    summary:
-      "Long-term partnership with SLAs, proactive monitoring and a team that already knows your system.",
-    outcomes: ["Peace of mind", "Rapid response", "Continuous improvement"],
-  },
-];
-
-export type Solution = {
-  slug: string;
-  title: string;
-  icon: LucideIcon;
-  description: string;
-  points: string[];
-};
-
-export const solutions: Solution[] = [
-  {
-    slug: "digital-products",
-    title: "Digital Product Engineering",
-    icon: Rocket,
-    description:
-      "From zero to launch: we design and build web and mobile products that customers love and that scale.",
-    points: [
-      "Discovery and product strategy",
-      "Design systems and accessible UI",
-      "Full-stack build with CI/CD",
-      "Analytics and iteration",
-    ],
-  },
-  {
-    slug: "intelligent-automation",
-    title: "Intelligent Automation",
-    icon: Bot,
-    description:
-      "Combine AI, workflow engines and integrations to remove repetitive work and scale operations.",
-    points: [
-      "Process mapping and audit",
-      "AI + rules-based workflows",
-      "Human-in-the-loop controls",
-      "Monitoring and reporting",
-    ],
-  },
-  {
-    slug: "cloud-modernization",
-    title: "Cloud & Modernization",
-    icon: Cloud,
-    description:
-      "Move legacy systems to resilient, cost-efficient cloud architectures with zero-downtime strategies.",
-    points: [
-      "Architecture assessment",
-      "Incremental migration",
-      "Infrastructure as code",
-      "Cost and performance tuning",
-    ],
-  },
-  {
-    slug: "security-compliance",
-    title: "Security & Compliance",
-    icon: ShieldCheck,
-    description:
-      "Protect your customers and your reputation with security engineered into every layer.",
-    points: [
-      "Threat modeling",
-      "Hardening and encryption",
-      "Access control and auditing",
-      "Continuous monitoring",
-    ],
-  },
-  {
-    slug: "data-platforms",
-    title: "Data & Analytics Platforms",
-    icon: BarChart3,
-    description:
-      "Unify data sources into trusted platforms that power reporting, forecasting and AI.",
-    points: [
-      "Data modeling and pipelines",
-      "Warehouses and dashboards",
-      "Real-time analytics",
-      "Governance and quality",
-    ],
-  },
-  {
-    slug: "platform-scaling",
-    title: "Platform Scaling",
-    icon: Gauge,
-    description:
-      "Re-architect for growth so your platform stays fast and reliable as demand multiplies.",
-    points: [
-      "Load and capacity planning",
-      "Caching and query design",
-      "Observability",
-      "Reliability engineering",
-    ],
-  },
-];
-
-export type Industry = {
-  slug: string;
-  title: string;
-  icon: LucideIcon;
-  description: string;
-};
-
-export const industries: Industry[] = [
-  {
-    slug: "startups",
-    title: "Startups & Founders",
-    icon: Rocket,
-    description:
-      "Ship a credible MVP fast, then scale it into a fundable, defensible product with the right foundations.",
-  },
-  {
-    slug: "smes",
-    title: "SMEs",
-    icon: Store,
-    description:
-      "Automate operations, digitize workflows and compete with larger players using leaner technology.",
-  },
-  {
-    slug: "enterprise",
-    title: "Enterprise",
-    icon: Building2,
-    description:
-      "Modernize legacy systems, integrate tools and deliver secure platforms your teams can rely on.",
-  },
-  {
-    slug: "government",
-    title: "Government",
-    icon: Landmark,
-    description:
-      "Accessible, secure and auditable digital services built for citizens and public sector standards.",
-  },
-  {
-    slug: "ngos",
-    title: "NGOs & Nonprofits",
-    icon: HeartHandshake,
-    description:
-      "Maximize impact per dollar with efficient, transparent systems for programs, donors and reporting.",
-  },
-  {
-    slug: "fintech",
-    title: "Fintech & Commerce",
-    icon: BarChart3,
-    description:
-      "High-integrity, high-availability platforms for payments, commerce and financial operations.",
-  },
-];
-
-export type ProcessStep = {
-  number: string;
-  title: string;
-  icon: LucideIcon;
-  description: string;
-};
-
-export const processSteps: ProcessStep[] = [
-  {
-    number: "01",
-    title: "Discovery",
-    icon: Search,
-    description:
-      "We align on your goals, constraints and success metrics before a line of code is written.",
-  },
-  {
-    number: "02",
-    title: "Research",
-    icon: Radar,
-    description:
-      "Users, competitors and technical feasibility — we de-risk the plan with evidence.",
-  },
-  {
-    number: "03",
-    title: "UI/UX Design",
-    icon: PenTool,
-    description:
-      "Accessible, on-brand interfaces designed as systems, validated with prototypes.",
-  },
-  {
-    number: "04",
-    title: "Architecture",
-    icon: Layers,
-    description:
-      "We design for scale, security and change so the system endures beyond launch.",
-  },
-  {
-    number: "05",
-    title: "Development",
-    icon: Code2,
-    description:
-      "Tested, reviewed code shipped in short cycles with visibility at every step.",
-  },
-  {
-    number: "06",
-    title: "Testing",
-    icon: TestTube2,
-    description:
-      "Automated and manual testing across functionality, performance and security.",
-  },
-  {
-    number: "07",
-    title: "Deployment",
-    icon: Rocket,
-    description:
-      "Automated, observable releases with safe rollouts and instant rollbacks.",
-  },
-  {
-    number: "08",
-    title: "Continuous Support",
-    icon: LifeBuoy,
-    description:
-      "We stay on as a long-term partner — monitoring, improving and evolving the product.",
-  },
-];
-
-export type TechCategory = {
-  title: string;
-  icon: LucideIcon;
-  items: string[];
-};
-
-export const techStack: TechCategory[] = [
-  {
-    title: "Frontend",
-    icon: Layers,
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-  },
-  {
-    title: "Backend",
-    icon: Boxes,
-    items: ["Python", "Node.js", "Firebase", "Supabase"],
-  },
-  {
-    title: "Cloud",
-    icon: Cloud,
-    items: ["Cloudflare", "DigitalOcean", "Vercel"],
-  },
-  {
-    title: "AI & Automation",
-    icon: BrainCircuit,
-    items: ["OpenAI", "Anthropic", "Google AI", "n8n"],
-  },
-  {
-    title: "Security",
-    icon: ShieldCheck,
-    items: ["OWASP Best Practices", "Authentication", "Encryption", "Monitoring"],
-  },
-  {
-    title: "Data",
-    icon: Database,
-    items: ["PostgreSQL", "Redis", "Analytics", "Pipelines"],
-  },
-];
-
-export const coreValues = [
-  {
-    title: "Engineering Excellence",
-    description:
-      "We hold ourselves to a high bar: tested code, clean architecture and decisions we can defend.",
-    icon: Code2,
-  },
-  {
-    title: "Integrity",
-    description:
-      "We tell you what we would do if it were our own money. No inflated scopes, no hidden trade-offs.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Innovation",
-    description:
-      "We adopt what works, not what is loud. Emerging technology in service of real outcomes.",
-    icon: BrainCircuit,
-  },
-  {
-    title: "Long-Term Partnerships",
-    description:
-      "We optimize for the relationship, not the transaction. Most of our work is with returning partners.",
-    icon: HeartHandshake,
-  },
-  {
-    title: "Security First",
-    description:
-      "Security is designed in from day one, never bolted on. Your customers' trust is the asset.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "User-Centered Design",
-    description:
-      "Software only creates value when people use it. We design for the humans on both sides.",
-    icon: Palette,
-  },
-  {
-    title: "Scalability",
-    description:
-      "We build for where you are going, not only where you are today — without over-engineering.",
-    icon: Gauge,
-  },
-];
-
-export type CaseStudy = {
-  slug: string;
-  label: "Concept Project" | "Internal Product" | "Prototype" | "Innovation Lab";
-  title: string;
-  tagline: string;
-  industry: string;
-  problem: string;
-  solution: string;
-  architecture: string[];
-  technologies: string[];
-  outcomes: { label: string; value: string }[];
-  lessons: string[];
-  accent: string;
-};
-
-export const caseStudies: CaseStudy[] = [
-  {
-    slug: "orbit-ops",
-    label: "Concept Project",
-    title: "OrbitOps",
-    tagline: "An operations command center for scaling SMEs.",
-    industry: "SME Operations",
-    problem:
-      "Growing businesses run operations across spreadsheets, chat and disconnected tools, losing hours to manual reconciliation and error-prone handoffs.",
-    solution:
-      "A unified operations platform that centralizes tasks, approvals and reporting, with automation replacing repetitive manual steps and a clean dashboard giving leaders live visibility.",
-    architecture: [
-      "Next.js App Router frontend with server components",
-      "PostgreSQL data core with row-level access control",
-      "n8n-driven automation workflows for approvals",
-      "Event-driven notifications and audit logging",
-    ],
-    technologies: ["Next.js", "TypeScript", "PostgreSQL", "n8n", "Tailwind CSS"],
-    outcomes: [
-      { label: "Manual work targeted", value: "-60%" },
-      { label: "Reporting latency", value: "Real-time" },
-      { label: "Single source of truth", value: "1 platform" },
-    ],
-    lessons: [
-      "Unify operations before adding automation — automation on chaos automates chaos.",
-      "Row-level access control is not optional when multiple teams share one source of truth.",
-      "Audit logging pays for itself the first time a stakeholder asks 'who changed what, when?'.",
-    ],
-    accent: "from-brand-500 to-accent-500",
-  },
-  {
-    slug: "sentinel-ai",
-    label: "Innovation Lab",
-    title: "Sentinel AI",
-    tagline: "An AI triage layer for customer operations.",
-    industry: "Customer Operations",
-    problem:
-      "Support teams are overwhelmed by high inbound volume, with slow first responses and inconsistent routing hurting customer experience.",
-    solution:
-      "An AI triage layer that classifies, prioritizes and drafts responses with a human-in-the-loop, escalating sensitive cases and learning from agent corrections.",
-    architecture: [
-      "Retrieval-grounded LLM pipeline with evaluation harness",
-      "Confidence thresholds routing to human review",
-      "Vector store over knowledge base and past tickets",
-      "Observability dashboard for accuracy and drift",
-    ],
-    technologies: ["Anthropic", "OpenAI", "Python", "Next.js", "PostgreSQL"],
-    outcomes: [
-      { label: "First-response time", value: "Faster" },
-      { label: "Human oversight", value: "Always on" },
-      { label: "Consistency", value: "Standardized" },
-    ],
-    lessons: [
-      "Confidence thresholds and human handoff are the difference between a demo and a deployment.",
-      "An evaluation harness built on real tickets catches regressions no unit test will.",
-      "Observability for AI is a product feature, not an afterthought.",
-    ],
-    accent: "from-accent-500 to-brand-500",
-  },
-  {
-    slug: "vault-shield",
-    label: "Prototype",
-    title: "VaultShield",
-    tagline: "Security posture monitoring for growing platforms.",
-    industry: "Cybersecurity",
-    problem:
-      "Fast-moving teams ship quickly but lack continuous visibility into misconfigurations, exposed secrets and dependency risk.",
-    solution:
-      "A security posture dashboard that continuously scans configuration, dependencies and access, surfacing prioritized, actionable findings mapped to OWASP guidance.",
-    architecture: [
-      "Scheduled scanners for config, secrets and dependencies",
-      "Severity scoring and prioritized remediation queue",
-      "Encrypted findings store with access controls",
-      "Alerting via email and workflow integrations",
-    ],
-    technologies: ["Node.js", "OWASP", "PostgreSQL", "Cloudflare", "Next.js"],
-    outcomes: [
-      { label: "Vulnerability visibility", value: "Continuous" },
-      { label: "Remediation guidance", value: "Prioritized" },
-      { label: "Coverage", value: "Full stack" },
-    ],
-    lessons: [
-      "Prioritization is the product — raw findings without severity overwhelm teams.",
-      "Encrypted findings stores are non-negotiable; the scanner itself becomes a target.",
-      "Map every finding to remediation steps, or it is noise.",
-    ],
-    accent: "from-brand-600 to-accent-400",
-  },
-  {
-    slug: "insight-grid",
-    label: "Internal Product",
-    title: "InsightGrid",
-    tagline: "A decision dashboard turning raw data into signals.",
-    industry: "Data Analytics",
-    problem:
-      "Leaders drown in dashboards yet still lack the few signals that actually drive decisions, while data lives in silos.",
-    solution:
-      "A unified analytics layer that consolidates sources, models key metrics and presents a focused decision dashboard with forecasts and anomaly alerts.",
-    architecture: [
-      "ETL pipelines consolidating multiple sources",
-      "Modeled metrics layer with governance",
-      "Forecasting and anomaly detection jobs",
-      "Fast, cached dashboard with role-based views",
-    ],
-    technologies: ["Python", "PostgreSQL", "Next.js", "Google AI", "Vercel"],
-    outcomes: [
-      { label: "Data sources unified", value: "Many → 1" },
-      { label: "Decision signals", value: "Focused" },
-      { label: "Forecasting", value: "Built-in" },
-    ],
-    lessons: [
-      "A modeled metrics layer prevents the 'two dashboards, two numbers' failure mode.",
-      "Cached aggregations keep leadership dashboards fast as data grows.",
-      "Forecasting is only valuable when paired with anomaly alerts.",
-    ],
-    accent: "from-accent-600 to-brand-500",
-  },
-];
-
-export type Insight = {
+export type JournalEntry = {
   slug: string;
   title: string;
   excerpt: string;
   category: string;
   tags?: string[];
-  author?: string;
-  featured?: boolean;
-  readingTime: string;
   date: string;
+  readingTime: string;
   body: string[];
   sections?: { heading: string; text: string }[];
 };
 
-export const blogCategories = [
-  "AI",
-  "Automation",
-  "Cybersecurity",
-  "Software Engineering",
-  "Cloud",
-  "DevOps",
-  "SaaS",
-  "Startup",
-  "Product Updates",
-  "Case Studies",
-  "Engineering",
-] as const;
-
-export const authors: Record<
-  string,
-  { name: string; role: string; bio: string; slug: string }
-> = {
-  "balogun-adeolu": {
-    name: "Balogun Adeolu",
-    role: "Founder & Software Engineer",
-    bio: "Founder of Pedumo. Writes about engineering leadership, secure systems and building technology companies that last.",
-    slug: "balogun-adeolu",
-  },
-  "pedumo-engineering": {
-    name: "Pedumo Engineering",
-    role: "Engineering Team",
-    bio: "Collective writing from the Pedumo engineering team on architecture, automation, security and delivery.",
-    slug: "pedumo-engineering",
-  },
-};
-
-export const insights: Insight[] = [
+export const journalEntries: JournalEntry[] = [
   {
-    slug: "engineering-for-longevity",
-    title: "Engineering for Longevity: Building Software That Lasts",
+    slug: "trust-as-architecture",
+    title: "Trust as Architecture: Why the Best Systems Are Built on Reliability, Not Speed",
     excerpt:
-      "Why the cheapest software to build is rarely the cheapest to own — and how to design systems that stay valuable for years.",
-    category: "Engineering",
-    tags: ["architecture", "maintainability", "total-cost-of-ownership"],
-    author: "balogun-adeolu",
-    featured: true,
-    readingTime: "6 min read",
-    date: "2026-01-14",
+      "The technology industry rewards speed. But the organizations that last are built on trust — and trust is an architectural decision, not a marketing claim.",
+    category: "Leadership",
+    tags: ["trust", "architecture", "leadership", "reliability"],
+    date: "2026-06-15",
+    readingTime: "7 min read",
     body: [
-      "Most software costs are incurred after launch, not before it. The decisions that determine total cost of ownership are made early: how the system is structured, how it is tested, and how clearly its intent is documented.",
-      "Longevity is not about predicting the future perfectly. It is about designing for change — clear boundaries, explicit contracts and automated checks that let a team modify the system with confidence years later.",
-      "At Pedumo, we treat maintainability as a first-class requirement. A feature that ships fast but cannot be safely changed is a liability disguised as progress.",
+      "The technology industry rewards speed. Ship fast. Break things. Iterate. But the organizations that last — the ones that survive market shifts, regulatory changes, and the weight of their own complexity — are built on trust. And trust is not a feature you add later. It is an architectural decision you make from the start.",
+      "I have seen what happens when organizations treat trust as a marketing exercise instead of an engineering standard. They write 'secure by design' in their pitch decks while their authentication systems are held together with session tokens and hope. They promise 'enterprise-grade' while their database backups have never been tested.",
+      "Trust is built in the decisions nobody sees: the threat model you write before the first line of code, the encryption you implement because it is the right thing to do even when the client did not ask for it, the monitoring you set up so that when something goes wrong at 3 AM, you know before your customer does.",
+      "This is not about being slow. It is about being deliberate. The fastest way to build something that lasts is to build it right the first time.",
     ],
     sections: [
       {
-        heading: "The real cost curve",
-        text: "Most software costs are incurred after launch, not before it. The decisions that determine total cost of ownership are made early: how the system is structured, how it is tested, and how clearly its intent is documented.",
+        heading: "The speed trap",
+        text: "Speed without discipline is just chaos arriving faster. I have seen teams ship features in days that cost months of remediation — security incidents, data loss, customer churn. The irony is that the 'slow' teams, the ones who take time to model threats and write tests, usually ship faster over the long arc because they are not constantly firefighting.",
       },
       {
-        heading: "Designing for change",
-        text: "Longevity is not about predicting the future perfectly. It is about designing for change — clear boundaries, explicit contracts and automated checks that let a team modify the system with confidence years later.",
+        heading: "Trust as a system property",
+        text: "Trust is not a single feature. It is a system property that emerges from hundreds of small decisions: how you handle errors, how you protect data, how you communicate when things go wrong. Like performance or security, it degrades silently if you are not actively investing in it.",
       },
       {
-        heading: "Maintainability as a requirement",
-        text: "At Pedumo, we treat maintainability as a first-class requirement. A feature that ships fast but cannot be safely changed is a liability disguised as progress.",
+        heading: "Building for the worst day",
+        text: "Every system fails eventually. The question is whether you have rehearsed for that day. Tested backups. Rehearsed playbooks. A chain of command that knows its first three moves. Resilience is not paranoia — it is the feature your customers assume you have until the day that assumption is tested.",
       },
     ],
   },
   {
-    slug: "practical-ai-for-business",
-    title: "Practical AI for Business: Beyond the Hype",
+    slug: "why-i-build",
+    title: "Why I Build: Technology as a Commitment to the People Who Depend on It",
     excerpt:
-      "A grounded framework for adopting AI where it creates measurable value, with the guardrails that make it safe.",
-    category: "AI",
-    tags: ["ai", "automation", "evaluation", "governance"],
-    author: "pedumo-engineering",
-    readingTime: "7 min read",
-    date: "2026-01-06",
+      "I build because I believe the organizations that serve people deserve technology that works — not just today, but for years. That belief shapes everything.",
+    category: "Story",
+    tags: ["story", "building", "purpose", "technology"],
+    date: "2026-05-20",
+    readingTime: "6 min read",
     body: [
-      "The question is rarely whether AI can do something — it is whether AI should, and whether the result is reliable enough to trust in production.",
-      "We start with the process, not the model. Where is time lost? Where is judgment repetitive? Those are the places automation and augmentation pay off, provided you build evaluation and human oversight into the loop.",
-      "Grounded AI, measured against real tasks with humans in control of consequential decisions, is what separates durable value from expensive experiments.",
+      "I grew up in Idowa, a town in the Ijebu area of Ogun State. The pace was different. People measured things by whether they lasted — not by how quickly they arrived. That rhythm shaped how I think about technology.",
+      "When I write code, I am not thinking about the demo. I am thinking about the fifth year. The tenth year. The day a new team member joins and needs to understand why a decision was made. I am thinking about the person who depends on this system to do their job, feed their family, or run their business.",
+      "Technology is not an abstraction. It is a commitment to the people who depend on it. Every system I build is designed to honor that commitment — with code that is tested, architecture that is documented, and an engineering standard that does not bend for convenience.",
+      "This is why I build. Not to chase trends. Not to pad a portfolio. But because the organizations that serve people deserve technology that works — and keeps working.",
+    ],
+    sections: [
+      {
+        heading: "The weight of dependability",
+        text: "When someone trusts you with their technology, they are trusting you with their operations, their data, their reputation. That is not a transaction. It is a responsibility. I take it seriously because I have seen what happens when people do not.",
+      },
+      {
+        heading: "Building for the long term",
+        text: "The cheapest software to build is rarely the cheapest to own. The decisions that determine total cost of ownership are made early — how the system is structured, how it is tested, and how clearly its intent is documented. Longevity is not about predicting the future. It is about designing for change.",
+      },
     ],
   },
   {
-    slug: "security-as-a-foundation",
-    title: "Security as a Foundation, Not a Feature",
+    slug: "cybersecurity-is-not-a-feature",
+    title: "Cybersecurity Is Not a Feature: Why Security Must Be a Foundational Decision",
     excerpt:
-      "How threat modeling, encryption and monitoring designed in from day one protect both customers and reputation.",
+      "Security added at the end is expensive and fragile. Security designed from the start is cheaper, stronger, and largely invisible to users. The difference is architectural.",
     category: "Cybersecurity",
-    tags: ["security", "owasp", "encryption", "monitoring"],
-    author: "pedumo-engineering",
+    tags: ["security", "cybersecurity", "owasp", "architecture"],
+    date: "2026-04-10",
     readingTime: "5 min read",
-    date: "2025-12-18",
     body: [
-      "Security added at the end is expensive and fragile. Security designed in from the start is cheaper, stronger and largely invisible to users.",
-      "We model threats before we build, encrypt sensitive data by default, enforce least-privilege access and monitor continuously. None of this is exotic — it is disciplined engineering.",
-      "The payoff is trust. In a market where a single breach can end a company, security is not a cost center. It is a competitive advantage.",
+      "I have spent years in cybersecurity. I have seen what happens when organizations treat security as a checklist item — something you add after the product works, before the launch, or worse, after the breach.",
+      "Security added at the end is expensive and fragile. It fights against the architecture instead of being part of it. It is the difference between a building with a strong foundation and one where you bolt the locks on after someone breaks in.",
+      "Security designed from the start is cheaper, stronger, and largely invisible to users. You model threats before you build. You encrypt sensitive data by default. You enforce least-privilege access. You monitor continuously. None of this is exotic — it is disciplined engineering.",
+      "In a market where a single breach can end a company, security is not a cost center. It is a competitive advantage. And it starts with the founder's conviction that the people who depend on your systems deserve protection, not apologies.",
     ],
   },
   {
-    slug: "cloud-cost-discipline",
-    title: "Cloud Cost Discipline: Engineering Your Way Out of Waste",
+    slug: "the-discipline-of-execution",
+    title: "The Discipline of Execution: Why Great Ideas Are Not Enough",
     excerpt:
-      "Most cloud bills are 30–50% waste. The fix is architectural, not administrative — and it compounds every month.",
-    category: "Cloud",
-    tags: ["cloud", "finops", "performance", "architecture"],
-    author: "pedumo-engineering",
+      "Ideas are abundant. Execution is rare. The difference between a visionary and a builder is the willingness to do the unglamorous work — repeatedly, consistently, and at a high standard.",
+    category: "Leadership",
+    tags: ["execution", "discipline", "leadership", "building"],
+    date: "2026-03-05",
     readingTime: "6 min read",
-    date: "2026-02-02",
     body: [
-      "Cloud waste rarely comes from one big mistake. It accumulates: oversized instances that were 'temporary', orphaned storage, chatty services generating egress fees, environments that never sleep.",
-      "The durable fix is architectural. Right-size by measurement, cache aggressively at the edge, design data flows to minimize egress, and make cost a visible engineering metric with an owner.",
-      "Treat cloud spend the way you treat performance: profile, fix the biggest bottleneck, and repeat. The savings fund the next initiative.",
+      "Everyone has ideas. What separates founders who build lasting companies from those who do not is not vision — it is execution. The willingness to do the unglamorous work. Repeatedly. Consistently. At a standard that does not bend for convenience.",
+      "Execution is not about working harder. It is about working with discipline. Writing scope before you write code. Setting measurable milestones. Reviewing progress honestly. Making the hard decisions early rather than paying for them later.",
+      "The organizations I respect most are not the ones with the most impressive pitch decks. They are the ones where the operational reality matches the promise. Where the systems run in production. Where the team can tell you exactly what they shipped last week and what they are shipping next week.",
+      "Discipline is not glamorous. But it is the difference between a company that survives its first year and one that survives its tenth.",
     ],
   },
   {
-    slug: "data-foundations-before-ai",
-    title: "Why Data Foundations Decide Whether AI Succeeds",
+    slug: "ai-for-the-real-world",
+    title: "AI for the Real World: Beyond the Hype to Practical Value",
     excerpt:
-      "Organizations skip straight to models and wonder why results disappoint. The unglamorous truth: data engineering is the multiplier.",
-    category: "AI",
-    tags: ["data-engineering", "ai", "governance", "pipelines"],
-    author: "pedumo-engineering",
-    readingTime: "5 min read",
-    date: "2026-02-16",
+      "The question is rarely whether AI can do something — it is whether it should, and whether the result is reliable enough to trust in production. A grounded framework for adoption.",
+    category: "Technology",
+    tags: ["ai", "automation", "evaluation", "governance"],
+    date: "2026-02-18",
+    readingTime: "7 min read",
     body: [
-      "Every disappointing AI initiative we have examined shared a root cause: the underlying data was fragmented, inconsistent or simply wrong. No model compensates for that.",
-      "Before AI, invest in the foundations — a modeled source of truth, pipelines with quality checks, clear ownership and lineage. This work is measurable and pays off even if you never ship a model.",
-      "When the foundations exist, AI projects stop being experiments and start being deployments. The order of operations is the strategy.",
+      "The AI industry is full of impressive demos. But the gap between a demo and a deployment is where most organizations fail. They see the demo, imagine the ROI, and skip the hard work of evaluation, governance, and human oversight that makes AI safe for real business use.",
+      "I start with the process, not the model. Where is time lost? Where is judgment repetitive? Those are the places automation and augmentation pay off — provided you build evaluation and human oversight into the loop.",
+      "Grounded AI, measured against real tasks with humans in control of consequential decisions, is what separates durable value from expensive experiments. The framework is simple: measure before you automate, evaluate before you deploy, and always keep a human in the loop for decisions that matter.",
     ],
   },
   {
-    slug: "resilience-is-a-feature",
-    title: "Resilience Is a Feature: Designing for the Worst Day",
+    slug: "building-teams-that-trust",
+    title: "Building Teams That Trust: The Leadership Philosophy Behind Every Company I Build",
     excerpt:
-      "Outages, breaches and data loss are not edge cases — they are eventualities. The organizations that survive rehearse.",
-    category: "DevOps",
-    tags: ["resilience", "incident-response", "backups", "continuity"],
-    author: "balogun-adeolu",
+      "The best teams are not built on perks. They are built on clarity, accountability, and the knowledge that the person next to you will deliver when it matters.",
+    category: "Leadership",
+    tags: ["teams", "leadership", "trust", "culture"],
+    date: "2026-01-22",
     readingTime: "6 min read",
-    date: "2026-03-03",
     body: [
-      "Every system fails eventually. The difference between an incident and a catastrophe is preparation: tested backups, rehearsed playbooks and recovery objectives that were validated before they were needed.",
-      "We design for the worst day from day one — failover that has actually been triggered, backups that have actually been restored, and a chain of command that knows its first three moves.",
-      "Resilience is not paranoia. It is the feature your customers assume you have — until the day that assumption is tested.",
+      "The best teams I have built share one quality: trust. Not the kind you declare in a values statement. The kind you earn through consistent action — showing up, delivering on commitments, and being honest when things go wrong.",
+      "I build teams around clarity. Everyone knows what they are responsible for, what success looks like, and how their work connects to the mission. Ambiguity is the enemy of trust. When people know what is expected, they can hold themselves — and each other — accountable.",
+      "I also build teams around the willingness to do hard things. The projects that matter are rarely the easy ones. They require trade-offs, late nights, and the kind of creative problem-solving that only happens when people trust each other enough to disagree openly.",
+      "The teams I am most proud of are not the ones that never failed. They are the ones that recovered fast, learned honestly, and came back stronger. That is the kind of team I build. That is the kind of leader I try to be.",
     ],
   },
 ];
 
-export const faqs = [
+export type Principle = {
+  title: string;
+  statement: string;
+  elaboration: string;
+};
+
+export const principles: Principle[] = [
   {
-    question: "What kind of companies do you work with?",
-    answer:
-      "We partner with startups, SMEs, enterprises, NGOs and government organizations. What our partners share is a need for software they can trust and a team that treats their business like its own.",
+    title: "Technology",
+    statement: "Technology should make an organization stronger, not more fragile.",
+    elaboration: "Every system I build is designed to survive reality — not just the demo. Architecture that endures, code that is tested, and the discipline to build it right the first time.",
   },
   {
-    question: "How do you price engagements?",
-    answer:
-      "We scope each engagement to your goals — fixed-scope projects for well-defined work, and retained partnerships for ongoing product development and support. You always know what you are paying for and why.",
+    title: "People",
+    statement: "The best teams are built on trust, not perks.",
+    elaboration: "Clarity, accountability, and the knowledge that the person next to you will deliver when it matters. I build teams where people can disagree openly, recover fast, and come back stronger.",
   },
   {
-    question: "Do you only build, or do you also maintain?",
-    answer:
-      "Both. We optimize for long-term partnerships. Most of our work involves maintaining and evolving systems over time, with SLAs, monitoring and a team that already understands your product.",
+    title: "Business",
+    statement: "The goal is always a measurable outcome, not an activity.",
+    elaboration: "Technology is a means. The end is a business result — revenue, efficiency, trust, resilience. I measure my work against the outcomes leadership is accountable for.",
   },
   {
-    question: "Can you work with our existing team and codebase?",
-    answer:
-      "Yes. We frequently embed with in-house teams, modernize legacy systems and improve existing codebases. We adapt to your workflow rather than forcing ours.",
+    title: "Execution",
+    statement: "Discipline is the difference between a vision and a company.",
+    elaboration: "Ideas are abundant. Execution is rare. The willingness to do the unglamorous work — repeatedly, consistently, and at a high standard — is what separates builders from dreamers.",
   },
   {
-    question: "How do you approach AI responsibly?",
-    answer:
-      "We ground AI in your data, evaluate it against real tasks and keep humans in control of consequential decisions. We deploy AI where it creates measurable value — not because it is fashionable.",
+    title: "Innovation",
+    statement: "Adopt what works, not what is loud.",
+    elaboration: "I use emerging technology in service of real outcomes, not because it is fashionable. Practical AI, evaluated against real tasks, with human oversight where it matters.",
   },
   {
-    question: "Where are you located and how do you collaborate?",
-    answer:
-      "We work with international businesses and collaborate remotely with clear communication, regular demos and full visibility into progress. Time zone overlap and async discipline keep projects moving.",
+    title: "Responsibility",
+    statement: "The people who depend on your systems deserve protection, not apologies.",
+    elaboration: "Security is not a feature. It is a foundational decision. I model threats before I build, encrypt by default, and monitor continuously — because trust is earned through action, not claims.",
   },
 ];
 
-export const stats: { value: number; suffix?: string; prefix?: string; label: string }[] = [
-  { value: 11, suffix: "+", label: "Engineered products & services" },
-  { value: 8, suffix: "-step", label: "Delivery method on every engagement" },
-  { value: 100, suffix: "%", label: "Ownership of outcomes" },
-  { value: 24, suffix: "/7", label: "Monitoring on supported systems" },
-];
+export type TimelineEvent = {
+  year: string;
+  title: string;
+  description: string;
+  type: "beginning" | "growth" | "founding" | "building" | "milestone";
+};
 
-export const studioTopics = [
-  { title: "Software Engineering", icon: Code2, description: "Deep dives on building real systems." },
-  { title: "AI Automation", icon: Bot, description: "Practical automation from the field." },
-  { title: "Cybersecurity", icon: ShieldCheck, description: "Defending modern applications." },
-  { title: "Technology News", icon: Radar, description: "Signal over noise for builders." },
-  { title: "Product Engineering", icon: Boxes, description: "From idea to shipped product." },
-  { title: "Developer Tutorials", icon: PenTool, description: "Hands-on, no-fluff walkthroughs." },
-  { title: "Business Technology", icon: BarChart3, description: "Tech decisions for leaders." },
-  { title: "Video Production", icon: Palette, description: "Studio-quality technical media." },
-];
-
-export const openSourceProjects = [
+export const timeline: TimelineEvent[] = [
   {
-    name: "pedumo/ui-kit",
-    description:
-      "An accessible React component library with sensible defaults, used as the foundation for our client work.",
-    language: "TypeScript",
-    focus: "Design System",
+    year: "Early Years",
+    title: "Idowa, Ogun State",
+    description: "Born and raised in Idowa, a town in the Ijebu area of Ogun State, Nigeria. The values of dependability, craftsmanship, and long-term thinking were not taught — they were lived.",
+    type: "beginning",
   },
   {
-    name: "pedumo/flow-nodes",
-    description:
-      "Reusable automation nodes and templates for building reliable workflows on n8n.",
-    language: "TypeScript",
-    focus: "Automation",
+    year: "Discovery",
+    title: "Finding Technology",
+    description: "Discovered software engineering and cybersecurity. Not as academic subjects, but as disciplines that could protect people and organizations. The realization that code could be a commitment to the people who depend on it.",
+    type: "beginning",
   },
   {
-    name: "pedumo/secure-starters",
-    description:
-      "Hardened application starters with OWASP-aligned defaults, auth and encryption baked in.",
-    language: "TypeScript",
-    focus: "Security",
+    year: "Craft",
+    title: "Building the Foundation",
+    description: "Years of deep technical work across full-stack engineering, cybersecurity, cloud infrastructure, and data systems. Learning not just how to build, but how to build things that last.",
+    type: "growth",
   },
   {
-    name: "pedumo/perf-lens",
-    description:
-      "A lightweight performance profiling toolkit for finding bottlenecks in web applications.",
-    language: "TypeScript",
-    focus: "Performance",
+    year: "2024",
+    title: "Founding Pedumo",
+    description: "Founded Pedumo on the conviction that organizations deserve a technology partner as accountable for outcomes as for code. A company built around discipline, trust, and execution — not hype.",
+    type: "founding",
+  },
+  {
+    year: "2024–2025",
+    title: "Building in Public",
+    description: "Shipped 11+ products and services. Built an 8-step delivery methodology. Worked with startups, SMEs, enterprises, NGOs and governments across multiple industries.",
+    type: "building",
+  },
+  {
+    year: "2026",
+    title: "Scaling the Vision",
+    description: "Expanding Pedumo's reach while building new ventures. Speaking at conferences. Writing about technology, leadership, and the discipline of building companies that last.",
+    type: "milestone",
   },
 ];
 
-export const careers = [
+export type Recognition = {
+  year: string;
+  title: string;
+  description: string;
+};
+
+export const recognition: Recognition[] = [
   {
-    title: "Senior Full-Stack Engineer",
-    type: "Remote · Full-time",
-    description:
-      "Own features end to end across modern React, Node and cloud infrastructure for international clients.",
+    year: "2024",
+    title: "Founded Pedumo Technologies",
+    description: "Launched a technology engineering and AI automation company serving organizations across Africa and globally.",
   },
   {
-    title: "AI Automation Engineer",
-    type: "Remote · Full-time",
-    description:
-      "Design grounded AI workflows and integrations with evaluation and human-in-the-loop controls.",
+    year: "2025",
+    title: "11+ Products & Services",
+    description: "Built and shipped a comprehensive portfolio of technology products, from AI automation platforms to cybersecurity tools.",
   },
   {
-    title: "Product Designer (UI/UX)",
-    type: "Remote · Contract",
-    description:
-      "Craft accessible, premium interfaces as systems and validate them with users and prototypes.",
+    year: "2025",
+    title: "Multi-Industry Impact",
+    description: "Delivered solutions for startups, SMEs, enterprises, NGOs, and government organizations across financial services, healthcare, and public sector.",
   },
   {
-    title: "DevOps / Platform Engineer",
-    type: "Remote · Full-time",
-    description:
-      "Build reliable pipelines, infrastructure as code and observability for production systems.",
+    year: "2026",
+    title: "Thought Leadership",
+    description: "Published articles on engineering longevity, cybersecurity, AI governance, and the discipline of execution — reaching thousands of technology professionals.",
+  },
+];
+
+export type SpeakingEvent = {
+  title: string;
+  description: string;
+  type: "conference" | "panel" | "interview" | "workshop" | "keynote";
+  status: "upcoming" | "past";
+  date?: string;
+  location?: string;
+};
+
+export const speakingEvents: SpeakingEvent[] = [
+  {
+    title: "Trust as Architecture: Building Systems That Survive Reality",
+    description: "A talk on why the most important technology decisions are about trust, reliability, and the discipline to build things that last.",
+    type: "keynote",
+    status: "upcoming",
+  },
+  {
+    title: "Cybersecurity for Founders",
+    description: "A practical workshop for startup founders on building security into their products from day one — without slowing down.",
+    type: "workshop",
+    status: "upcoming",
+  },
+  {
+    title: "AI in Africa: Opportunity, Responsibility, and the Path Forward",
+    description: "A panel discussion on the opportunities and challenges of AI adoption in African markets, with a focus on governance and human oversight.",
+    type: "panel",
+    status: "upcoming",
+  },
+  {
+    title: "The Discipline of Execution",
+    description: "A talk on why great ideas are not enough — and the systems, habits, and standards that separate builders from dreamers.",
+    type: "keynote",
+    status: "past",
+  },
+  {
+    title: "Building Technology Companies That Last",
+    description: "An interview on the founding of Pedumo, the philosophy behind the company, and the lessons learned from building in the African technology ecosystem.",
+    type: "interview",
+    status: "past",
+  },
+];
+
+export type Venture = {
+  name: string;
+  role: string;
+  description: string;
+  url: string;
+  status: "active" | "building" | "exploring";
+  highlights: string[];
+  links?: { label: string; href: string }[];
+};
+
+export const ventures: Venture[] = [
+  {
+    name: "Pedumo",
+    role: "Founder & Software Architect",
+    description: "Technology engineering and AI automation company. We build secure software, cloud infrastructure, data intelligence and cyber resilience for organizations that value a trustworthy long-term partner.",
+    url: "https://pedumo.com",
+    status: "active",
+    highlights: [
+      "11+ products and services shipped",
+      "8-step delivery methodology",
+      "Multi-industry client portfolio",
+      "Security-first engineering standard",
+    ],
+    links: [
+      { label: "Website", href: "https://pedumo.com" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/pedumo" },
+      { label: "GitHub", href: "https://github.com/pedumostudio" },
+      { label: "X", href: "https://x.com/pedumolabs" },
+    ],
+  },
+  {
+    name: "Community Work",
+    role: "Technology Education & Mentorship",
+    description: "Contributing to the technology ecosystem through education, mentorship, and open-source contributions. Helping the next generation of builders develop the skills and discipline to build companies that last.",
+    url: "",
+    status: "active",
+    highlights: [
+      "Open-source contributions",
+      "Technology education",
+      "Mentorship for aspiring founders",
+    ],
+  },
+  {
+    name: "Next Venture",
+    role: "Exploring",
+    description: "Always exploring new opportunities at the intersection of technology, business, and impact. Interested in AI governance, cybersecurity platforms, and tools that help organizations build with discipline.",
+    url: "",
+    status: "exploring",
+    highlights: [
+      "AI governance and safety",
+      "Cybersecurity platforms",
+      "Developer tools for disciplined execution",
+    ],
   },
 ];
