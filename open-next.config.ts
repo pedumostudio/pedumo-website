@@ -5,17 +5,17 @@ import doShardedTagCache from "@opennextjs/cloudflare/overrides/tag-cache/do-sha
 import { purgeCache } from "@opennextjs/cloudflare/overrides/cache-purge/index";
 
 /**
- * Production configuration for Pedumo on Cloudflare Workers.
+ * Production configuration for Balogun Adeolu's website on Cloudflare Workers.
  *
  * Currently uses the static-assets incremental cache (no R2 bucket needed).
  * To upgrade to R2 for ISR/revalidation support:
  *
  * 1. Create the R2 bucket:
- *    npx wrangler r2 bucket create pedumo-website-cache
+ *    npx wrangler r2 bucket create balogunadeolu-website-cache
  *
  * 2. Add the R2 binding to wrangler.jsonc:
  *    "r2_buckets": [
- *      { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "pedumo-website-cache" }
+ *      { "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "balogunadeolu-website-cache" }
  *    ]
  *
  * 3. Switch this config to:
