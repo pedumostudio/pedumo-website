@@ -5,7 +5,7 @@ import { Section } from "@/components/section";
 import { Reveal } from "@/components/motion";
 import { ButtonLink } from "@/components/ui/button";
 import { siteConfig, FOUNDER_IMAGE } from "@/lib/site";
-import { journalEntries } from "@/lib/content";
+import { journalEntries, recognition } from "@/lib/content";
 
 export default function HomePage() {
   const recentJournal = journalEntries.slice(0, 3);
@@ -77,7 +77,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════
           EDITORIAL STATEMENT
           ═══════════════════════════════════════════════════════════ */}
-      <Section className="!py-24">
+      <Section className="!py-28">
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
@@ -88,7 +88,7 @@ export default function HomePage() {
             <p className="mt-8 text-balance text-2xl font-medium leading-snug tracking-tight text-[var(--foreground)] sm:text-3xl md:text-[2.25rem] md:leading-[1.25]">
               The most important technology decisions are not about frameworks or platforms.
               They are about{" "}
-              <span className="font-semibold">who you trust to build</span>,
+              <span className="font-semibold">who you trust to build</span>,{" "}
               whether the architecture can survive reality,
               and if the people behind it will still be there when it matters.
             </p>
@@ -99,7 +99,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════
           QUICK NAVIGATION — Editorial cards
           ═══════════════════════════════════════════════════════════ */}
-      <Section className="section-divider !py-24">
+      <Section className="section-divider !py-28">
         <div className="grid gap-px overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--border)] sm:grid-cols-2 lg:grid-cols-4">
           {[
             {
@@ -152,9 +152,44 @@ export default function HomePage() {
       </Section>
 
       {/* ═══════════════════════════════════════════════════════════
+          RECOGNITION
+          ═══════════════════════════════════════════════════════════ */}
+      <Section className="!py-28">
+        <div className="mx-auto max-w-4xl">
+          <Reveal>
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
+              Recognition
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Milestones
+            </h2>
+          </Reveal>
+          <div className="mt-12 divide-y divide-[var(--border)] border-y border-[var(--border)]">
+            {recognition.map((item, i) => (
+              <Reveal key={item.title} delay={i * 0.05}>
+                <div className="group flex items-start gap-6 py-6 sm:px-4">
+                  <span className="shrink-0 font-mono text-xs uppercase tracking-[0.2em] text-accent-500 sm:w-20">
+                    {item.year}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold tracking-tight">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ═══════════════════════════════════════════════════════════
           RECENT JOURNAL
           ═══════════════════════════════════════════════════════════ */}
-      <Section className="!py-24">
+      <Section className="!py-28">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <Reveal>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
@@ -197,7 +232,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════════════════
           CONTACT CTA
           ═══════════════════════════════════════════════════════════ */}
-      <Section className="section-divider !py-24">
+      <Section className="section-divider !py-28">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
