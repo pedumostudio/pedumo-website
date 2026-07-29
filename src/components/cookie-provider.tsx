@@ -23,7 +23,7 @@ type CookieContextValue = {
 };
 
 const CookieContext = createContext<CookieContextValue | undefined>(undefined);
-const STORAGE_KEY = "pedumo-cookie-consent";
+const STORAGE_KEY = "ba-cookie-consent";
 
 function readStored(): CookieConsent | null {
   if (typeof window === "undefined") return null;

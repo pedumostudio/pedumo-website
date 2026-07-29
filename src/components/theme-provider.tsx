@@ -33,7 +33,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.classList.toggle("dark", next === "dark");
     root.style.colorScheme = next;
     try {
-      localStorage.setItem("pedumo-theme", next);
+      localStorage.setItem("ba-theme", next);
     } catch {
       // ignore storage errors
     }
@@ -66,4 +66,4 @@ export function useTheme() {
   return context;
 }
 
-export const themeInitScript = `(function(){try{var t=localStorage.getItem('pedumo-theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var d=t?t==='dark':true;var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';}catch(e){document.documentElement.classList.add('dark');}})();`;
+export const themeInitScript = `(function(){try{var t=localStorage.getItem('ba-theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var d=t?t==='dark':true;var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';}catch(e){document.documentElement.classList.add('dark');}})();`;
