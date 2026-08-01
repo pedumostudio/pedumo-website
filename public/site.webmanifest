@@ -1,0 +1,17 @@
+{
+  "name": "Pedumo Technologies",
+  "short_name": "Pedumo",
+  "description": "Pedumo is a technology engineering and AI automation partner.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060912",
+  "theme_color": "#060912",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
