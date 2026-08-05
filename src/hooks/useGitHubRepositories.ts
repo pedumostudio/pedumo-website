@@ -11,6 +11,8 @@ export type GitHubRepositoryMeta = {
   forks: number;
   openIssues: number;
   language: string | null;
+  license: string | null;
+  contributors: number | null;
   archived: boolean;
 };
 
@@ -24,6 +26,7 @@ type GitHubApiRepository = {
   forks_count: number;
   open_issues_count: number;
   language: string | null;
+  license: { name: string; spdx_id: string | null } | null;
   archived: boolean;
 };
 
@@ -31,6 +34,31 @@ export type GitHubRepositoryState = {
   status: "idle" | "loading" | "ready" | "partial" | "error";
   repositories: Record<string, GitHubRepositoryMeta>;
 };
+
+function parseLastPage(linkHeader: string | null) {
+  if (!linkHeader) return null;
+  const match = linkHeader.match(/[?&]page=(\d+)>; rel="last"/);
+  return match ? Number(match[1]) : null;
+}
+
+async function fetchContributorCount(owner: string, repo: string, signal: AbortSignal) {
+  const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contributors?per_page=1&anon=true`, {
+    signal,
+    headers: {
+      Accept: "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+  });
+
+  if (response.status === 204 || response.status === 404) return null;
+  if (!response.ok) return null;
+
+  const lastPage = parseLastPage(response.headers.get("Link"));
+  if (lastPage) return lastPage;
+
+  const data = (await response.json()) as unknown[];
+  return data.length;
+}
 
 async function fetchRepositoryMeta(repo: OpenSourceRepository, signal: AbortSignal) {
   const response = await fetch(
@@ -50,6 +78,7 @@ async function fetchRepositoryMeta(repo: OpenSourceRepository, signal: AbortSign
   }
 
   const data = (await response.json()) as GitHubApiRepository;
+  const contributors = await fetchContributorCount(repo.githubOwner, repo.githubRepo, signal);
   return {
     id: repo.id,
     meta: {
@@ -62,6 +91,8 @@ async function fetchRepositoryMeta(repo: OpenSourceRepository, signal: AbortSign
       forks: data.forks_count,
       openIssues: data.open_issues_count,
       language: data.language,
+      license: data.license?.spdx_id && data.license.spdx_id !== "NOASSERTION" ? data.license.spdx_id : data.license?.name || null,
+      contributors,
       archived: data.archived,
     } satisfies GitHubRepositoryMeta,
   };

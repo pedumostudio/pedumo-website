@@ -752,3 +752,127 @@ export const founderExpertise = [
   { icon: Cloud, label: "Cloud infrastructure & DevOps" },
   { icon: Target, label: "Digital transformation strategy" },
 ];
+export const engineeringTips = [
+  {
+    title: "Write the failure mode first",
+    description:
+      "Before implementation, describe how the feature fails, how users recover and what telemetry proves the system is healthy.",
+  },
+  {
+    title: "Make deployments reversible",
+    description:
+      "A release is not production-ready until rollback, feature flags or safe disable paths have been designed and rehearsed.",
+  },
+  {
+    title: "Keep API contracts explicit",
+    description:
+      "Document request shapes, response guarantees and error semantics so teams can evolve clients and services independently.",
+  },
+  {
+    title: "Protect the operational path",
+    description:
+      "Admin actions, support workflows and background jobs need the same security and observability as customer-facing features.",
+  },
+];
+
+export const aiTodayInsights = [
+  {
+    title: "Evaluation beats model enthusiasm",
+    description:
+      "Responsible AI systems need test sets, acceptance thresholds and human review paths before they are trusted with business decisions.",
+  },
+  {
+    title: "Ground AI in owned knowledge",
+    description:
+      "Retrieval, permissions and source attribution matter more than broad prompts when AI touches private operations or customer data.",
+  },
+  {
+    title: "Design for graceful refusal",
+    description:
+      "Production AI should know when not to answer, when to ask for context and when to escalate to a human operator.",
+  },
+];
+
+export const cybersecurityAlerts = [
+  {
+    title: "Rotate stale access tokens",
+    description:
+      "Review GitHub, cloud, email and automation tokens. Remove unused credentials and enforce least privilege before incidents force the work.",
+    severity: "Preventive",
+  },
+  {
+    title: "Audit public storage exposure",
+    description:
+      "Verify that buckets, blobs, backups and generated assets do not expose private data through permissive defaults or inherited policies.",
+    severity: "High impact",
+  },
+  {
+    title: "Test the recovery path",
+    description:
+      "Backups are assumptions until restored. Schedule a restore drill and record the recovery time, owner and failure points.",
+    severity: "Resilience",
+  },
+];
+
+export const knowledgeHubSections = [
+  {
+    title: "Software Engineering",
+    description: "Architecture, maintainability, API design, testing strategy and production delivery practices.",
+    href: "/services#software-engineering",
+  },
+  {
+    title: "AI",
+    description: "Responsible AI systems, evaluation, grounding, automation and human-in-the-loop workflows.",
+    href: "/services#ai-automation",
+  },
+  {
+    title: "Cloud",
+    description: "Scalable infrastructure, edge delivery, resilience, cost control and reproducible environments.",
+    href: "/services#cloud-engineering",
+  },
+  {
+    title: "Cybersecurity",
+    description: "Threat modeling, secure APIs, access control, monitoring and incident readiness.",
+    href: "/services#cybersecurity",
+  },
+  {
+    title: "Architecture",
+    description: "System boundaries, integration strategy, data flows and decision records for long-lived platforms.",
+    href: "/insights#articles",
+  },
+  {
+    title: "DevSecOps",
+    description: "CI/CD, secure delivery, policy checks, environment drift control and operational visibility.",
+    href: "/services#devops-platform-engineering",
+  },
+  {
+    title: "Automation",
+    description: "Workflow automation, internal platforms and repeatable processes that reduce human error.",
+    href: "/services#digital-transformation",
+  },
+  {
+    title: "Engineering Principles",
+    description: "Security first, scalability by design, documentation, testing and maintainability guidance.",
+    href: "/#principles",
+  },
+  {
+    title: "Whitepapers",
+    description: "Long-form research notes are planned for this knowledge hub. Integration pending.",
+    href: "/insights#whitepapers",
+  },
+  {
+    title: "Checklists",
+    description: "Operational and security checklists are planned for download. Integration pending.",
+    href: "/insights#checklists",
+  },
+  {
+    title: "Downloads",
+    description: "Downloadable templates will appear only when files exist in the repository. Integration pending.",
+    href: "/insights#downloads",
+  },
+  {
+    title: "Case Studies",
+    description: "Internal lab studies and concept projects that demonstrate how Pedumo reasons about systems.",
+    href: "/case-studies",
+  },
+];

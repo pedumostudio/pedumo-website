@@ -1,118 +1,135 @@
-# Pedumo Website Audit and Release Notes
+# Pedumo Production Audit and Release Notes
 
 Date: 2026-08-05
 Branch: `arena/019fd290-pedumo-website`
 
-## Pre-change Audit
+## Verified repository context before this work
+
+- Current repository: `/home/user/pedumo-website`
+- Current branch: `arena/019fd290-pedumo-website`
+- Starting commit reported by the checkout: `9184a5f7ab3f9a38d46638d4480953b05d80bb17`
+- Remote: `origin https://github.com/pedumo/pedumo-website.git`
+
+## Phase 1 audit findings
 
 ### Broken links / missing pages
 
-- `/open-source` was required but did not exist.
-- `/journal` was required but did not exist.
-- Sitemap omitted `/open-source`, `/journal`, `/privacy`, `/terms` and `/status`.
-- The app used hash-only routes, while canonical metadata and sitemap used clean URLs. Direct clean-path visits could render the wrong SPA route before routing was updated.
+- Active internal route scan found no missing route bases for `/`, `/services`, `/insights`, `/open-source`, `/journal`, `/founder`, `/about`, `/case-studies`, `/security`, `/contact`, `/book`, `/status`, `/privacy`, and `/terms`.
+- Public asset scan found no missing referenced public assets.
+- GitHub API returned `200` for `pedumo/pedumo-website`.
+- GitHub API returned `404` for the pending `pedumolab/pedumo-docs`, `pedumo-cloud`, `pedumo-security`, `pedumo-ai`, and `pedumo-labs` repositories.
 
-### Incorrect social links
+### Dead pages / missing pages
 
-- GitHub pointed to `https://github.com/pedumostudio` instead of `https://github.com/pedumolab`.
-- X pointed to `https://x.com/pedumolabs` instead of `https://x.com/pedumolab`.
-- Facebook links were present even though they were not part of the verified social link list.
-- Founder-only social links existed for networks not included in the requested verified list.
+- Required pages exist: `/insights`, `/open-source`, `/journal`, `/founder`, `/contact`, `/privacy`, `/terms`, `/status`.
+- Unknown routes render the SPA fallback and the app-level not-found page.
 
-### Missing / misleading product surfaces
+### Duplicate code / duplicated components
 
-- Homepage did not include the requested Engineering Insights, featured repository listing, Latest Engineering Activity, newsletter status, trust indicator row and engineering principles sections.
-- Newsletter form submitted to LiveForm and showed subscription success, which implied a working newsletter backend.
-- `/insights` existed but was not yet positioned as a central knowledge hub.
+- Social/trust links were centralized in `src/lib/site.ts` to avoid duplicated URL definitions.
+- Footer duplicate href check found no duplicated footer hrefs after the footer revision.
 
-### SEO issues
+### Unused JavaScript / CSS / assets / fonts
 
-- Static metadata in `index.html` referenced outdated social URLs and Facebook.
-- Open Graph image `/og.png` was referenced but no `public/og.png` asset existed.
-- Dynamic SEO metadata did not set Twitter/X site and creator handles from the verified profile.
-- Sitemap was incomplete.
+- TypeScript `noUnusedLocals` validation passed.
+- Google Fonts were removed from `index.html`, `public/_headers`, and `src/worker.ts`; the site now uses system font fallback from the CSS stack.
+- Required public assets are present: `icon.svg`, `og.png`, `pedumoceo.jpg`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `_headers`, and `.well-known/security.txt`.
+- Full CSS coverage could not be measured without a browser coverage tool. I could not verify this.
 
-### Performance / Lighthouse risks
+### SEO weaknesses found and addressed
 
-- Initial dependency install was missing (`node_modules` absent), so the first build attempt failed with `vite: not found`.
-- `npm audit` reported Vite/esbuild vulnerabilities before dependency updates.
-- Homepage contains a canvas/SVG engineering visualization and multiple content sections; animation remains restrained and respects `prefers-reduced-motion`.
+- SearchAction needed a real search experience; `/insights` now has a client-side knowledge hub search.
+- Breadcrumb structured data was not generated consistently; the SEO component now adds WebSite, WebPage and BreadcrumbList schema where applicable.
+- Static Organization and WebSite schema were updated in `index.html`.
+- Sitemap and robots are present.
 
-### Accessibility / mobile observations
+### Performance bottlenecks found and addressed
 
-- Existing skip link, semantic landmarks, focus states and reduced-motion handling were present.
-- New route and footer structure required keyboard-accessible, overflow-safe links and minimum 44px interactive targets.
+- External Google Fonts were a render dependency and were removed.
+- Production build output is single-file and currently about 431.64 kB uncompressed / 122.17 kB gzip.
+- Lighthouse could not run because Chrome/Chromium is not installed in the sandbox. I could not verify Lighthouse scores.
 
-### Dead / duplicate code observations
+### Accessibility and mobile findings
 
-- Newsletter submission code would become dead once the newsletter was changed to a non-operational notice.
-- Branded social icons for unsupported networks were unnecessary once social links were corrected.
-- `framer-motion` was listed in dependencies but not imported anywhere in `src`.
+- Skip link, semantic landmarks, reduced-motion CSS and focus states exist.
+- Contact email channels now use semantic `address` markup and explicit ARIA labels.
+- Route HTTP checks passed through Vite preview.
+- Browser-based keyboard, screen reader and breakpoint verification at 320px, 375px, 414px, 768px, 1024px and 1440px could not be executed because no Chrome/Chromium browser is available. I could not verify this.
 
-## Follow-up Audit on Current Platform
+### Social link findings
 
-### Broken links / missing pages
+- Active source/config scan found no `ceo@pedumo.com`, Facebook, Instagram, TikTok, Discord, Spotify, YouTube, `pedumostudio`, `pedumolabs`, or `balogunpedumo` references.
+- `https://github.com/pedumolab` verified via fetch page and GitHub API context.
+- `https://dev.to/pedumo` verified via fetch page.
+- `https://x.com/pedumolab` verified via fetch page.
+- `https://balogunadeolu.com` verified via fetch page.
+- `https://medium.com/@balogunadeolu` returned Medium 404 content through fetch page. I could not verify this as a working Medium profile.
+- `https://www.linkedin.com/company/pedumo` returned HTTP 403 through fetch tooling. I could not verify this.
+- `https://pedumo.com` fetched successfully, but production content did not reflect the latest local build at audit time. Deployment could not be verified.
 
-- Internal route scan found no missing route bases for the active clean-path navigation set.
-- Referenced public assets exist in `public/`.
+## Changes implemented
 
-### Duplicate code
+### Phase A — Perfect the website
 
-- Homepage and footer each maintained their own social/trust link arrays before this follow-up pass.
+- Restored `Founder` in primary navigation.
+- Reworked `/founder` with biography, mission, vision, engineering philosophy, experience, timeline and links.
+- Reworked `/contact` with separate channels:
+  - General enquiries: `contact@pedumo.com`
+  - Business bookings: `booking@pedumo.com`
+  - Future partnerships: `partnerships@pedumo.com`
+- Rebuilt footer groups: Products, Engineering, Open Source, Resources, Company, Legal, Support, Newsletter and Social.
+- Removed duplicated footer hrefs.
+- Removed Google Fonts dependency.
+- Expanded SEO structured data with WebSite, WebPage, BreadcrumbList and SearchAction support.
+- Added a real search UI to `/insights` to support SearchAction.
 
-### Dead components / unused JS
+### Phase B — Living engineering platform
 
-- `processIcons` was exported from `src/lib/content.ts` but was not imported anywhere.
-- `Search` and `PenTool` icon imports only existed to support that unused export.
+- Added Engineering Operating Brief with rotating:
+  - Engineering Tip of the Day
+  - AI Today
+  - Cybersecurity Alert
+  - Weekly Engineering Principle
+- Updated homepage articles section label to Latest Articles / Engineering Insights.
+- Reworked Latest GitHub Activity to fetch live public commit activity from `pedumo/pedumo-website`.
+- Reworked repository cards to show live data only when a repository exists:
+  - Stars
+  - Forks
+  - Language
+  - License
+  - Updated
+  - Contributors
+- Pending repositories display `Repository pending.` and no fabricated metrics.
+- Reworked `/journal` to show PEDUMO website articles and explicit pending status for DEV.to and Medium feed integrations.
+- Reworked `/insights` as a professional searchable knowledge hub with Software Engineering, AI, Cloud, Cybersecurity, Architecture, DevSecOps, Automation, Engineering Principles, Whitepapers, Checklists, Downloads and Case Studies.
+- Newsletter remains disabled and displays `Newsletter backend not configured.`
 
-### SEO / performance / accessibility observations
-
-- Static and dynamic SEO metadata remain in place.
-- The open-source section was data-modeled but did not yet attempt real public GitHub metadata loading.
-- Lighthouse still cannot run in this sandbox because no Chrome/Chromium executable is installed.
-
-## Changes Implemented
-
-- Added clean path routing with legacy `#/route` migration support.
-- Added `/open-source` and `/journal` pages.
-- Rebuilt homepage with Engineering Insights, Open Source, Latest Engineering Activity, Newsletter status, Trust Indicators and Engineering Principles sections.
-- Converted the newsletter component into an honest disabled state that displays: `Newsletter backend not yet configured.`
-- Updated verified social links and removed unsupported company social networks.
-- Rebuilt footer around Products, Engineering, Open Source, Resources, Company, Legal, Newsletter, Social Links and Copyright.
-- Updated `/insights` into a knowledge hub with the four requested seeded articles.
-- Added data models for future GitHub, activity, journal and feed integrations.
-- Added a public GitHub metadata adapter for repository cards and homepage engineering activity fallback states.
-- Centralized official trust/social links to avoid duplicated social URL definitions.
-- Removed unused `processIcons` dead export and its unused icon imports.
-- Updated Cloudflare CSP headers to allow public GitHub API metadata requests.
-- Updated SEO metadata, structured data, sitemap, robots and web manifest.
-- Added a deterministic `public/og.png` Open Graph image.
-- Removed unused `framer-motion` dependency.
-- Updated generic scaffold package metadata to `pedumo-website`.
-- Updated Vite/esbuild dependency tree until `npm audit --audit-level=low` reported zero vulnerabilities.
-- Added `README.md` with route, validation and integration documentation.
-
-## Validation Notes
-
-Executed after implementation:
+## Validation performed
 
 ```bash
 npm ci
 npx tsc --noEmit
 npm run build
 npm audit --audit-level=low
+git diff --check
 ```
 
-Results:
+Additional checks:
 
-- TypeScript validation completed with no errors.
-- Production build completed successfully.
-- `npm audit --audit-level=low` reported zero vulnerabilities.
-- Internal link route scan found no missing route bases.
-- Public asset reference scan found no missing public assets.
-- Unsupported social reference scan found no Facebook, Instagram, TikTok, Discord, Spotify or previous incorrect Pedumo social URLs in active source/config files.
-- Public GitHub API check for `pedumo/pedumo-website` returned HTTP 200 with repository metadata.
-- Clean route requests for `/`, `/services`, `/insights`, `/open-source`, `/journal`, `/about`, `/founder`, `/case-studies`, `/security`, `/contact`, `/book`, `/status`, `/privacy` and `/terms` returned the built SPA shell from Vite preview.
-- Lighthouse could not run in this sandbox because no Chrome/Chromium executable is installed for the Lighthouse CLI.
+- Vite preview route checks for all primary routes returned HTTP 200.
+- Internal link scan found no missing route bases.
+- Public asset scan found no missing public assets.
+- Forbidden social/email scan found no active forbidden references.
+- GitHub API checks verified existing and pending repository states.
+- Lighthouse was attempted and failed because Chrome/Chromium is missing.
 
-Manual browser QA should still verify footer links, social links, disabled newsletter, contact forms, mobile breakpoints and metadata in the production deployment environment.
+## Validation results
+
+- TypeScript: passed.
+- Production build: passed.
+- npm audit: zero vulnerabilities.
+- git diff whitespace check: passed.
+- Internal route checks: passed.
+- Public asset checks: passed.
+- Lighthouse: failed to run due missing Chrome/Chromium.
+- Deployment: not verified.

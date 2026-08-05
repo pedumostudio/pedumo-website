@@ -17,9 +17,9 @@ function formatCount(value: number) {
 function integrationMessage(status: ReturnType<typeof useGitHubRepositories>["status"], liveCount: number) {
   if (status === "loading") return "Checking public GitHub repository metadata…";
   if (liveCount > 0) {
-    return `Live public GitHub metadata loaded for ${liveCount} featured repository${liveCount === 1 ? "" : "ies"}. Repository cards without public metadata remain marked as pending instead of showing fabricated activity.`;
+    return `Live public GitHub metadata loaded for ${liveCount} featured repository${liveCount === 1 ? "" : "ies"}. Cards without public metadata are marked Repository pending and do not show fabricated metrics.`;
   }
-  return "Public GitHub metadata is unavailable right now. Repository cards remain visible with integration status and no fabricated stars, forks or commit counts.";
+  return "Public GitHub metadata is unavailable right now. Repository cards remain visible with pending status and no fabricated stars, forks, language, license, updated date or contributors.";
 }
 
 export function RepositoryGrid({ variant = "detailed", showNotice = false }: RepositoryGridProps) {
@@ -46,7 +46,6 @@ export function RepositoryGrid({ variant = "detailed", showNotice = false }: Rep
         {openSourceRepositories.map((repo, i) => {
           const meta = githubState.repositories[repo.id];
           const href = meta?.htmlUrl || repo.href;
-          const status = meta ? "Live GitHub metadata" : repo.status;
           return (
             <Reveal key={repo.id} delay={(i % 3) * 0.05}>
               <article
@@ -73,9 +72,8 @@ export function RepositoryGrid({ variant = "detailed", showNotice = false }: Rep
                   <p className="mt-1 break-words font-mono text-sm text-brand-300">
                     {meta?.fullName || repo.repoSlug}
                   </p>
-                  <p className="mt-2 text-xs text-[var(--muted)]">{status}</p>
                   {meta ? (
-                    <dl className="mt-4 grid grid-cols-3 gap-2 text-xs">
+                    <dl className="mt-4 grid grid-cols-2 gap-3 text-xs sm:grid-cols-3">
                       <div>
                         <dt className="text-[var(--muted)]">Stars</dt>
                         <dd className="mt-1 font-mono text-[var(--foreground)]">{formatCount(meta.stars)}</dd>
@@ -85,14 +83,30 @@ export function RepositoryGrid({ variant = "detailed", showNotice = false }: Rep
                         <dd className="mt-1 font-mono text-[var(--foreground)]">{formatCount(meta.forks)}</dd>
                       </div>
                       <div>
+                        <dt className="text-[var(--muted)]">Language</dt>
+                        <dd className="mt-1 font-mono text-[var(--foreground)]">{meta.language || "Not reported"}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-[var(--muted)]">License</dt>
+                        <dd className="mt-1 font-mono text-[var(--foreground)]">{meta.license || "Not reported"}</dd>
+                      </div>
+                      <div>
                         <dt className="text-[var(--muted)]">Updated</dt>
                         <dd className="mt-1 font-mono text-[var(--foreground)]">{formatGitHubDate(meta.pushedAt)}</dd>
                       </div>
+                      <div>
+                        <dt className="text-[var(--muted)]">Contributors</dt>
+                        <dd className="mt-1 font-mono text-[var(--foreground)]">
+                          {meta.contributors === null ? "Not reported" : formatCount(meta.contributors)}
+                        </dd>
+                      </div>
                     </dl>
-                  ) : null}
+                  ) : (
+                    <p className="mt-3 text-sm font-medium text-warning">Repository pending.</p>
+                  )}
                 </div>
 
-                {detailed ? (
+                {detailed && meta ? (
                   <a
                     href={href}
                     target="_blank"
@@ -103,7 +117,9 @@ export function RepositoryGrid({ variant = "detailed", showNotice = false }: Rep
                     Open on GitHub
                     <ArrowUpRight className="h-4 w-4" aria-hidden />
                   </a>
-                ) : (
+                ) : null}
+
+                {!detailed ? (
                   <a
                     href={hrefOf("/open-source", repo.id)}
                     className="mt-4 inline-flex min-h-[44px] items-center gap-2 self-start text-sm font-semibold text-brand-300 underline-offset-4 hover:underline"
@@ -111,7 +127,7 @@ export function RepositoryGrid({ variant = "detailed", showNotice = false }: Rep
                   >
                     View Repository →
                   </a>
-                )}
+                ) : null}
               </article>
             </Reveal>
           );

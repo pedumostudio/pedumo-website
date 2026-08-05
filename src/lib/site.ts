@@ -18,6 +18,7 @@ export const siteConfig = {
   ogImage: "https://pedumo.com/og.png",
   email: "contact@pedumo.com",
   bookingEmail: "booking@pedumo.com",
+  partnershipsEmail: "partnerships@pedumo.com",
   supportEmail: "support@pedumo.com",
   securityEmail: "security@pedumo.com",
   locale: "en_US",
@@ -68,6 +69,7 @@ export const primaryNav: NavItem[] = [
   { label: "Insights", href: "/insights", description: "Engineering articles and research notes." },
   { label: "Open Source", href: "/open-source", description: "Featured Pedumo repositories." },
   { label: "Journal", href: "/journal", description: "Publishing channels and integration status." },
+  { label: "Founder", href: "/founder", description: "Meet the founder." },
   { label: "About", href: "/about", description: "Mission, vision and values." },
   { label: "Contact", href: "/contact", description: "Start a conversation." },
 ];
@@ -77,13 +79,13 @@ export const footerNav = {
     { label: "Software Products", href: "/services#software-engineering" },
     { label: "AI Systems", href: "/services#ai-automation" },
     { label: "Cloud Platforms", href: "/services#cloud-engineering" },
-    { label: "Security Programs", href: "/security" },
+    { label: "Security Programs", href: "/services#cybersecurity" },
   ],
   Engineering: [
     { label: "How PEDUMO Builds Software", href: "/#principles" },
     { label: "Capabilities", href: "/services" },
-    { label: "Case Studies", href: "/case-studies" },
     { label: "Latest Activity", href: "/#activity" },
+    { label: "Knowledge Hub", href: "/insights" },
   ],
   "Open Source": [
     { label: "Featured Repositories", href: "/open-source" },
@@ -92,19 +94,25 @@ export const footerNav = {
     { label: "GitHub Organization", href: siteConfig.socials.github, external: true },
   ],
   Resources: [
-    { label: "Documentation", href: "/open-source#pedumo-docs" },
-    { label: "Articles", href: "/insights" },
     { label: "Engineering Journal", href: "/journal" },
-    { label: "Status", href: "/status" },
+    { label: "Articles", href: "/insights#articles" },
+    { label: "Whitepapers", href: "/insights#whitepapers" },
+    { label: "Checklists", href: "/insights#checklists" },
   ],
   Company: [
     { label: "About", href: "/about" },
     { label: "Founder", href: "/founder" },
-    { label: "Contact", href: "/contact" },
+    { label: "Case Studies", href: "/case-studies" },
     { label: "Book a Consultation", href: "/book" },
   ],
   Legal: [
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
+  ],
+  Support: [
+    { label: "Contact", href: "/contact" },
+    { label: "Security", href: "/security" },
+    { label: "Status", href: "/status" },
+    { label: "General enquiries", href: `mailto:${siteConfig.email}`, external: true },
   ],
 } as const;

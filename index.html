@@ -49,50 +49,68 @@
     <link rel="apple-touch-icon" href="/icon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
-      rel="stylesheet"
-    />
-
     <title>Pedumo — Engineering Intelligent Software Products</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Pedumo",
-        "legalName": "Pedumo Technologies",
-        "url": "https://pedumo.com",
-        "logo": "https://pedumo.com/icon.svg",
-        "description": "Pedumo is an engineering company building secure software products, cloud platforms, AI systems and resilient digital infrastructure.",
-        "email": "contact@pedumo.com",
-        "founder": {
-          "@type": "Person",
-          "name": "Balogun Adeolu",
-          "jobTitle": "Founder & Software Engineer",
-          "email": "contact@pedumo.com",
-          "image": "https://pedumo.com/pedumoceo.jpg",
-          "url": "https://balogunadeolu.com",
-          "sameAs": [
-            "https://balogunadeolu.com",
-            "https://medium.com/@balogunadeolu"
-          ]
-        },
-        "sameAs": [
-          "https://pedumo.com",
-          "https://www.linkedin.com/company/pedumo",
-          "https://github.com/pedumolab",
-          "https://x.com/pedumolab",
-          "https://dev.to/pedumo",
-          "https://medium.com/@balogunadeolu"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "booking@pedumo.com",
-          "contactType": "consultation"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "Pedumo",
+            "legalName": "Pedumo Technologies",
+            "url": "https://pedumo.com",
+            "logo": "https://pedumo.com/icon.svg",
+            "description": "Pedumo is an engineering company building secure software products, cloud platforms, AI systems and resilient digital infrastructure.",
+            "email": "contact@pedumo.com",
+            "founder": {
+              "@type": "Person",
+              "name": "Balogun Adeolu",
+              "jobTitle": "Founder & Software Engineer",
+              "email": "contact@pedumo.com",
+              "image": "https://pedumo.com/pedumoceo.jpg",
+              "url": "https://balogunadeolu.com",
+              "sameAs": [
+                "https://balogunadeolu.com",
+                "https://medium.com/@balogunadeolu"
+              ]
+            },
+            "sameAs": [
+              "https://pedumo.com",
+              "https://www.linkedin.com/company/pedumo",
+              "https://github.com/pedumolab",
+              "https://x.com/pedumolab",
+              "https://dev.to/pedumo",
+              "https://medium.com/@balogunadeolu"
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "email": "contact@pedumo.com",
+                "contactType": "general enquiries"
+              },
+              {
+                "@type": "ContactPoint",
+                "email": "booking@pedumo.com",
+                "contactType": "business bookings"
+              },
+              {
+                "@type": "ContactPoint",
+                "email": "partnerships@pedumo.com",
+                "contactType": "future partnerships"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "name": "Pedumo",
+            "url": "https://pedumo.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://pedumo.com/insights?search={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
       }
     </script>
   </head>

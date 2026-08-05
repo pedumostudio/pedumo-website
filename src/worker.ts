@@ -22,9 +22,9 @@ const SECURITY_HEADERS: Record<string, string> = {
   "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
   "Content-Security-Policy": [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com data:",
+    "script-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline'",
+    "font-src 'self' data:",
     "img-src 'self' https://pedumo.com data: blob:",
     "connect-src 'self' https://liveformhq.com https://pedumo.com https://api.github.com",
     "frame-ancestors 'none'",

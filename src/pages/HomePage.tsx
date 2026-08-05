@@ -14,6 +14,7 @@ import { DevToIcon, GitHubIcon, LinkedInIcon, MediumIcon, XIcon } from "@/compon
 import { NewsletterForm } from "@/components/newsletter-form";
 import { RepositoryGrid } from "@/components/open-source-repositories";
 import { EngineeringActivityFeed } from "@/components/engineering-activity-feed";
+import { EngineeringBriefing } from "@/components/engineering-briefing";
 import { Seo } from "@/components/seo";
 import {
   businessOutcomes,
@@ -25,7 +26,7 @@ import {
   insights,
   trustPillars,
 } from "@/lib/content";
-import { FOUNDER_IMAGE, siteConfig, trustIndicatorLinks, type OfficialLink } from "@/lib/site";
+import { siteConfig, trustIndicatorLinks, type OfficialLink } from "@/lib/site";
 import { hrefOf } from "@/hooks/useHashRoute";
 
 function formatDate(date: string) {
@@ -62,40 +63,12 @@ const trustIndicators = trustIndicatorLinks.map((link) => ({
   icon: socialIconByLabel[link.label],
 }));
 
-const orgSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.legalName,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/icon.svg`,
-  description: siteConfig.description,
-  founder: {
-    "@type": "Person",
-    name: siteConfig.founder,
-    jobTitle: siteConfig.founderTitle,
-    email: siteConfig.email,
-    image: `${siteConfig.url}${FOUNDER_IMAGE}`,
-    sameAs: [siteConfig.founderLinks.website, siteConfig.founderLinks.medium],
-  },
-  sameAs: [
-    siteConfig.socials.website,
-    siteConfig.socials.linkedin,
-    siteConfig.socials.github,
-    siteConfig.socials.x,
-    siteConfig.socials.dev,
-    siteConfig.socials.medium,
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    email: siteConfig.bookingEmail,
-    contactType: "consultation",
-  },
-};
+
 
 export function HomePage() {
   return (
     <>
-      <Seo path="/" jsonLd={[orgSchema, faqSchema]} />
+      <Seo path="/" jsonLd={faqSchema} />
       <Hero />
 
       <Section className="!py-10">
@@ -107,13 +80,15 @@ export function HomePage() {
         <TechMarquee />
       </Section>
 
+      <EngineeringBriefing />
+
       <Section id="insights" className="border-t border-[var(--border)] bg-[var(--background-subtle)]">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             align="left"
-            eyebrow="Knowledge Hub"
+            eyebrow="Latest Articles"
             title="Engineering Insights"
-            description="New engineering articles and practical architecture notes from Pedumo. The content is data-driven so future publishing and feed integrations can update this section automatically."
+            description="New engineering articles and practical architecture notes from Pedumo. The section is populated from structured content so future publishing and feed integrations can update it automatically."
             className="!mx-0"
           />
           <Reveal>
@@ -174,9 +149,9 @@ export function HomePage() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionHeading
             align="left"
-            eyebrow="Latest Engineering Activity"
-            title="Signals that the platform is alive"
-            description="A data-driven activity surface prepared for GitHub events, documentation releases and research updates. Current entries are manually curated until integration is configured."
+            eyebrow="Latest GitHub Activity"
+            title="Live public engineering activity"
+            description="This section reads public GitHub commit activity. If GitHub data cannot be verified, it says so instead of inventing commits, stars or shipping claims."
             className="!mx-0"
           />
           <EngineeringActivityFeed />

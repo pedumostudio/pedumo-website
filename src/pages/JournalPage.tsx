@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { Seo } from "@/components/seo";
-import { journalSources } from "@/lib/content";
+import { insights, journalSources } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
 import { hrefOf } from "@/hooks/useHashRoute";
 
@@ -23,7 +23,7 @@ export function JournalPage() {
     <>
       <Seo
         title="Engineering Journal"
-        description="The Pedumo Engineering Journal will aggregate website articles, DEV.to and Medium once feed integrations are configured."
+        description="The Pedumo Engineering Journal aggregates website articles and marks DEV.to and Medium integrations pending until feeds are configured."
         path="/journal"
         jsonLd={journalSchema}
       />
@@ -34,7 +34,7 @@ export function JournalPage() {
             One place for <span className="gradient-text">Pedumo engineering writing</span>
           </>
         }
-        description="This page is prepared to aggregate Pedumo website articles, DEV.to posts and Medium writing. It does not fabricate external feeds."
+        description="This page includes Pedumo website articles and is prepared to aggregate DEV.to and Medium. It does not fabricate external feed posts."
       >
         <ButtonLink href="/insights" variant="outline">
           Read Website Articles
@@ -45,17 +45,42 @@ export function JournalPage() {
         <div className="rounded-3xl border border-warning/30 bg-warning/10 p-5 text-sm leading-relaxed text-[var(--foreground)] edge-highlight sm:p-6">
           <p className="font-semibold text-warning">Integration pending.</p>
           <p className="mt-2 text-[var(--muted)]">
-            DEV.to, Medium and RSS API integrations are not configured in this repository. Journal
-            cards below link only to verified source destinations and do not display fake posts.
+            DEV.to, Medium and RSS API integrations are not configured in this repository. External
+            journal cards link only to verified source destinations and do not display fake posts.
           </p>
         </div>
       </Section>
 
-      <Section className="!pt-8">
+      <Section id="website-articles" className="!pt-8">
         <SectionHeading
-          eyebrow="Sources"
+          eyebrow="PEDUMO Articles"
+          title="Website articles available now"
+          description="These articles come from the local Pedumo content model. External feeds remain pending until real integrations exist."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {insights.map((post, i) => (
+            <Reveal key={post.slug} delay={(i % 2) * 0.05}>
+              <article className="flex h-full flex-col rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 edge-highlight">
+                <Badge>{post.category}</Badge>
+                <h2 className="mt-4 text-xl font-semibold tracking-tight">{post.title}</h2>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">{post.excerpt}</p>
+                <a
+                  href={hrefOf("/insights", post.slug)}
+                  className="mt-5 inline-flex min-h-[44px] items-center gap-2 self-start text-sm font-semibold text-brand-300 underline-offset-4 hover:underline"
+                >
+                  Read More →
+                </a>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-[var(--background-subtle)]">
+        <SectionHeading
+          eyebrow="External Sources"
           title="Prepared publishing channels"
-          description="The journal is data-driven so verified feeds can be connected later without redesigning the page."
+          description="DEV.to and Medium cards are visible only as integration status surfaces. They do not claim posts exist."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {journalSources.map((source, i) => {

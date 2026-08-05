@@ -14,7 +14,7 @@ export function NewsletterForm({ className = "" }: { className?: string }) {
         <div className="min-w-0">
           <p className="text-sm font-semibold text-[var(--foreground)]">Engineering newsletter</p>
           <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">
-            Newsletter backend not yet configured.
+            Newsletter backend not configured.
           </p>
         </div>
       </div>

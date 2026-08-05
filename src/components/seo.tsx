@@ -10,6 +10,23 @@ type SeoProps = {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 };
 
+const routeLabels: Record<string, string> = {
+  "/": "Home",
+  "/services": "Engineering",
+  "/insights": "Engineering Knowledge Hub",
+  "/open-source": "Open Source",
+  "/journal": "Engineering Journal",
+  "/founder": "Founder",
+  "/about": "About",
+  "/case-studies": "Case Studies",
+  "/security": "Security",
+  "/contact": "Contact",
+  "/book": "Book a Consultation",
+  "/status": "Status",
+  "/privacy": "Privacy",
+  "/terms": "Terms",
+};
+
 function upsertMeta(attr: "name" | "property", key: string, content: string) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
   if (!el) {
@@ -28,6 +45,56 @@ function upsertLink(rel: string, href: string) {
     document.head.appendChild(el);
   }
   el.href = href;
+}
+
+function baseStructuredData(path: string, fullTitle: string, description: string) {
+  const url = `${siteConfig.url}${path === "/" ? "" : path}`;
+  const graph: Record<string, unknown>[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${siteConfig.url}/insights?search={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ];
+
+  if (path !== "/") {
+    graph.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: siteConfig.url,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: routeLabels[path] || fullTitle.replace(` · ${siteConfig.name}`, ""),
+          item: url,
+        },
+      ],
+    });
+  }
+
+  graph.push({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: fullTitle,
+    description,
+    url,
+    isPartOf: { "@type": "WebSite", name: siteConfig.name, url: siteConfig.url },
+  });
+
+  return graph;
 }
 
 export function Seo({
@@ -54,6 +121,7 @@ export function Seo({
     upsertMeta("property", "og:type", type);
     upsertMeta("property", "og:url", url);
     upsertMeta("property", "og:image", image);
+    upsertMeta("property", "og:image:alt", `${siteConfig.name} — ${siteConfig.tagline}`);
     upsertMeta("property", "og:site_name", siteConfig.name);
     upsertMeta("property", "og:locale", siteConfig.locale);
     upsertMeta("name", "twitter:card", "summary_large_image");
@@ -62,19 +130,20 @@ export function Seo({
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", image);
+    upsertMeta("name", "twitter:image:alt", `${siteConfig.name} — ${siteConfig.tagline}`);
     upsertLink("canonical", url);
 
     const scriptId = "pedumo-jsonld";
     const existing = document.getElementById(scriptId);
     if (existing) existing.remove();
 
-    if (jsonLd) {
-      const script = document.createElement("script");
-      script.id = scriptId;
-      script.type = "application/ld+json";
-      script.text = JSON.stringify(jsonLd);
-      document.head.appendChild(script);
-    }
+    const provided = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+    const graph = [...baseStructuredData(path, fullTitle, description), ...provided];
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.type = "application/ld+json";
+    script.text = JSON.stringify(graph);
+    document.head.appendChild(script);
   }, [title, description, path, image, type, jsonLd]);
 
   return null;
