@@ -86,7 +86,12 @@ export default {
     // Cache-Control headers optimization
     if (url.pathname.startsWith("/assets/") || url.pathname.endsWith(".svg") || url.pathname.endsWith(".png") || url.pathname.endsWith(".jpg") || url.pathname.endsWith(".webmanifest")) {
       newHeaders.set("Cache-Control", "public, max-age=31536000, immutable");
-    } else if (url.pathname === "/" || url.pathname.endsWith(".html")) {
+    } else if (
+      url.pathname === "/" ||
+      url.pathname.endsWith(".html") ||
+      !url.pathname.includes(".") ||
+      newHeaders.get("Content-Type")?.includes("text/html")
+    ) {
       newHeaders.set("Cache-Control", "public, max-age=0, must-revalidate");
     }
 

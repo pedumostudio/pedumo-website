@@ -8,6 +8,8 @@ import { ServicesPage } from "@/pages/ServicesPage";
 import { AboutPage } from "@/pages/AboutPage";
 import { CaseStudiesPage } from "@/pages/CaseStudiesPage";
 import { InsightsPage } from "@/pages/InsightsPage";
+import { OpenSourcePage } from "@/pages/OpenSourcePage";
+import { JournalPage } from "@/pages/JournalPage";
 import { ContactPage } from "@/pages/ContactPage";
 import { BookPage } from "@/pages/BookPage";
 import { SecurityPage } from "@/pages/SecurityPage";
@@ -27,6 +29,10 @@ function resolvePage(path: string) {
       return <CaseStudiesPage />;
     case "/insights":
       return <InsightsPage />;
+    case "/open-source":
+      return <OpenSourcePage />;
+    case "/journal":
+      return <JournalPage />;
     case "/contact":
       return <ContactPage />;
     case "/book":

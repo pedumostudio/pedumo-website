@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://pedumo.com/sitemap.xml
+Host: https://pedumo.com

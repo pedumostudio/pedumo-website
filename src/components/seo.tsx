@@ -48,7 +48,7 @@ export function Seo({
     upsertMeta("name", "description", description);
     upsertMeta("name", "theme-color", "#060912");
     upsertMeta("name", "color-scheme", "dark");
-    upsertMeta("name", "robots", "index, follow, max-image-preview:large");
+    upsertMeta("name", "robots", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
     upsertMeta("property", "og:title", fullTitle);
     upsertMeta("property", "og:description", description);
     upsertMeta("property", "og:type", type);
@@ -57,6 +57,8 @@ export function Seo({
     upsertMeta("property", "og:site_name", siteConfig.name);
     upsertMeta("property", "og:locale", siteConfig.locale);
     upsertMeta("name", "twitter:card", "summary_large_image");
+    upsertMeta("name", "twitter:site", siteConfig.socialHandles.x);
+    upsertMeta("name", "twitter:creator", siteConfig.socialHandles.x);
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", image);

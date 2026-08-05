@@ -1,4 +1,4 @@
-import { Globe, Mail, MessageSquare } from "lucide-react";
+import { Globe, Mail } from "lucide-react";
 import { Section, SectionHeading } from "@/components/section";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
@@ -6,7 +6,7 @@ import { CTASection } from "@/components/cta-section";
 import { GridBackdrop, GlowOrbs } from "@/components/backgrounds";
 import { Reveal } from "@/components/motion";
 import { FounderPortrait } from "@/components/founder-portrait";
-import { GitHubIcon, LinkedInIcon, XIcon, YouTubeIcon, InstagramIcon } from "@/components/social-icons";
+import { GitHubIcon, LinkedInIcon, MediumIcon, XIcon } from "@/components/social-icons";
 import { Seo } from "@/components/seo";
 import { founderExpertise, founderPrinciples } from "@/lib/content";
 import { FOUNDER_IMAGE, siteConfig } from "@/lib/site";
@@ -20,16 +20,7 @@ const founderSchema = {
   image: `${siteConfig.url}${FOUNDER_IMAGE}`,
   worksFor: { "@type": "Organization", name: siteConfig.legalName, url: siteConfig.url },
   url: siteConfig.founderLinks.website,
-  sameAs: [
-    siteConfig.founderLinks.linkedin,
-    siteConfig.founderLinks.x,
-    siteConfig.founderLinks.youtube,
-    siteConfig.founderLinks.instagram,
-    siteConfig.founderLinks.facebook,
-    siteConfig.founderLinks.whatsapp,
-    siteConfig.founderLinks.github,
-    siteConfig.founderLinks.website,
-  ],
+  sameAs: [siteConfig.founderLinks.website, siteConfig.founderLinks.medium],
 };
 
 export function FounderPage() {
@@ -78,29 +69,23 @@ export function FounderPage() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href={siteConfig.founderLinks.linkedin} external>
-                <LinkedInIcon className="h-4 w-4" /> LinkedIn
+              <ButtonLink href={siteConfig.founderLinks.website} external>
+                <Globe className="h-4 w-4" /> Founder Website
               </ButtonLink>
-              <ButtonLink href={siteConfig.founderLinks.x} variant="outline" external>
-                <XIcon className="h-4 w-4" /> Twitter (X)
+              <ButtonLink href={siteConfig.founderLinks.medium} variant="outline" external>
+                <MediumIcon className="h-4 w-4" /> Medium
               </ButtonLink>
-              <ButtonLink href={siteConfig.founderLinks.youtube} variant="outline" external>
-                <YouTubeIcon className="h-4 w-4" /> YouTube
+              <ButtonLink href={siteConfig.socials.linkedin} variant="outline" external>
+                <LinkedInIcon className="h-4 w-4" /> Pedumo LinkedIn
               </ButtonLink>
-              <ButtonLink href={siteConfig.founderLinks.instagram} variant="outline" external>
-                <InstagramIcon className="h-4 w-4" /> Instagram
+              <ButtonLink href={siteConfig.socials.github} variant="outline" external>
+                <GitHubIcon className="h-4 w-4" /> Pedumo GitHub
               </ButtonLink>
-              <ButtonLink href={siteConfig.founderLinks.github} variant="outline" external>
-                <GitHubIcon className="h-4 w-4" /> GitHub
-              </ButtonLink>
-              <ButtonLink href={siteConfig.founderLinks.whatsapp} variant="outline" external>
-                <MessageSquare className="h-4 w-4" /> WhatsApp
+              <ButtonLink href={siteConfig.socials.x} variant="outline" external>
+                <XIcon className="h-4 w-4" /> Pedumo X
               </ButtonLink>
               <ButtonLink href={`mailto:${siteConfig.founderLinks.email}`} variant="outline">
                 <Mail className="h-4 w-4" /> Email
-              </ButtonLink>
-              <ButtonLink href={siteConfig.founderLinks.website} variant="outline" external>
-                <Globe className="h-4 w-4" /> Website
               </ButtonLink>
             </div>
           </Reveal>

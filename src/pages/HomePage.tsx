@@ -9,15 +9,19 @@ import { Reveal } from "@/components/motion";
 import { ButtonLink } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FounderPortrait } from "@/components/founder-portrait";
-import { LinkedInIcon, XIcon, YouTubeIcon, InstagramIcon } from "@/components/social-icons";
+import { DevToIcon, GitHubIcon, LinkedInIcon, MediumIcon, XIcon } from "@/components/social-icons";
+import { NewsletterForm } from "@/components/newsletter-form";
 import { Seo } from "@/components/seo";
 import {
   businessOutcomes,
   capabilities,
   caseStudies,
+  engineeringActivity,
+  engineeringPrinciples,
   faqs,
   industries,
   insights,
+  openSourceRepositories,
   trustPillars,
 } from "@/lib/content";
 import { FOUNDER_IMAGE, siteConfig } from "@/lib/site";
@@ -41,6 +45,14 @@ const faqSchema = {
   })),
 };
 
+const trustIndicators = [
+  { label: "GitHub", href: siteConfig.socials.github, icon: GitHubIcon },
+  { label: "LinkedIn", href: siteConfig.socials.linkedin, icon: LinkedInIcon },
+  { label: "Medium", href: siteConfig.socials.medium, icon: MediumIcon },
+  { label: "DEV.to", href: siteConfig.socials.dev, icon: DevToIcon },
+  { label: "X", href: siteConfig.socials.x, icon: XIcon },
+];
+
 const orgSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -54,18 +66,16 @@ const orgSchema = {
     jobTitle: siteConfig.founderTitle,
     email: siteConfig.email,
     image: `${siteConfig.url}${FOUNDER_IMAGE}`,
-    sameAs: [
-      siteConfig.founderLinks.linkedin,
-      siteConfig.founderLinks.x,
-      siteConfig.founderLinks.youtube,
-      siteConfig.founderLinks.instagram,
-      siteConfig.founderLinks.facebook,
-      siteConfig.founderLinks.whatsapp,
-      siteConfig.founderLinks.github,
-      siteConfig.founderLinks.website,
-    ],
+    sameAs: [siteConfig.founderLinks.website, siteConfig.founderLinks.medium],
   },
-  sameAs: [siteConfig.socials.linkedin, siteConfig.socials.github, siteConfig.socials.x],
+  sameAs: [
+    siteConfig.socials.website,
+    siteConfig.socials.linkedin,
+    siteConfig.socials.github,
+    siteConfig.socials.x,
+    siteConfig.socials.dev,
+    siteConfig.socials.medium,
+  ],
   contactPoint: {
     "@type": "ContactPoint",
     email: siteConfig.bookingEmail,
@@ -86,6 +96,186 @@ export function HomePage() {
           </p>
         </Reveal>
         <TechMarquee />
+      </Section>
+
+      <Section id="insights" className="border-t border-[var(--border)] bg-[var(--background-subtle)]">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            align="left"
+            eyebrow="Knowledge Hub"
+            title="Engineering Insights"
+            description="New engineering articles and practical architecture notes from Pedumo. The content is data-driven so future publishing and feed integrations can update this section automatically."
+            className="!mx-0"
+          />
+          <Reveal>
+            <ButtonLink href="/insights" variant="outline">
+              Visit Knowledge Hub
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </ButtonLink>
+          </Reveal>
+        </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {insights.map((post, i) => (
+            <Reveal key={post.slug} delay={(i % 4) * 0.05}>
+              <article className="flex h-full flex-col rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400/30 hover:shadow-md edge-highlight">
+                <div className="flex flex-wrap items-center gap-3 text-xs text-[var(--muted)]">
+                  <span className="font-medium text-brand-300">{post.category}</span>
+                  <span aria-hidden>·</span>
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                </div>
+                <h3 className="mt-4 text-xl font-semibold tracking-tight">{post.title}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">
+                  {post.excerpt}
+                </p>
+                <a
+                  href={hrefOf("/insights", post.slug)}
+                  className="mt-5 inline-flex min-h-[44px] items-center gap-2 self-start text-sm font-semibold text-brand-300 underline-offset-4 hover:underline"
+                  aria-label={`Read more about ${post.title}`}
+                >
+                  Read More →
+                </a>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="open-source">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            align="left"
+            eyebrow="Open Source"
+            title="Featured PEDUMO repositories"
+            description="A public engineering surface prepared for automatic GitHub repository updates without inventing stars, forks or commit metrics."
+            className="!mx-0"
+          />
+          <Reveal>
+            <ButtonLink href="/open-source" variant="outline">
+              Open Source Page
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </ButtonLink>
+          </Reveal>
+        </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {openSourceRepositories.map((repo, i) => (
+            <Reveal key={repo.id} delay={(i % 3) * 0.05}>
+              <article className="flex h-full flex-col rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 edge-highlight">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="inline-grid h-11 w-11 place-items-center rounded-2xl border border-[var(--border)] bg-[var(--background-elevated)] text-brand-300">
+                    <repo.icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <Badge>{repo.area}</Badge>
+                </div>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight">{repo.name}</h3>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">
+                  {repo.description}
+                </p>
+                <p className="mt-4 text-xs text-[var(--muted)]">{repo.status}</p>
+                <a
+                  href={hrefOf("/open-source", repo.id)}
+                  className="mt-4 inline-flex min-h-[44px] items-center gap-2 self-start text-sm font-semibold text-brand-300 underline-offset-4 hover:underline"
+                  aria-label={`View ${repo.name} repository details`}
+                >
+                  View Repository →
+                </a>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="activity" className="bg-[var(--background-subtle)]">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <SectionHeading
+            align="left"
+            eyebrow="Latest Engineering Activity"
+            title="Signals that the platform is alive"
+            description="A data-driven activity surface prepared for GitHub events, documentation releases and research updates. Current entries are manually curated until integration is configured."
+            className="!mx-0"
+          />
+          <div className="space-y-3">
+            {engineeringActivity.map((item, i) => (
+              <Reveal key={item.title} delay={i * 0.04}>
+                <article className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-5 edge-highlight">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <h3 className="text-lg font-semibold tracking-tight">{item.title}</h3>
+                    <Badge>{item.area}</Badge>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{item.description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      <Section id="newsletter">
+        <div className="grid gap-8 rounded-4xl border border-[var(--border-strong)] bg-[var(--background-sunken)] p-6 edge-highlight sm:p-8 lg:grid-cols-[1fr_0.95fr] lg:p-10">
+          <div>
+            <Badge dot>Newsletter</Badge>
+            <h2 className="mt-5 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+              Engineering briefings without pretending a backend exists
+            </h2>
+            <p className="mt-4 max-w-2xl leading-relaxed text-[var(--muted)]">
+              The newsletter section is intentionally visible because repeat visitors should know a
+              Pedumo briefing channel is planned. It does not collect emails until the backend,
+              consent workflow and email provider are configured.
+            </p>
+          </div>
+          <NewsletterForm />
+        </div>
+      </Section>
+
+      <Section id="trust-indicators" className="!pt-8">
+        <SectionHeading
+          eyebrow="Trust Indicators"
+          title="Verify Pedumo across engineering channels"
+          description="Official public destinations for Pedumo and the founder's technical writing. No unsupported social networks are displayed."
+        />
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {trustIndicators.map((item, i) => (
+            <Reveal key={item.label} delay={(i % 5) * 0.04}>
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex min-h-[72px] items-center justify-between gap-4 rounded-2xl border border-[var(--border)] bg-[var(--card)] px-5 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-400/35 hover:bg-white/[0.04] edge-highlight"
+                aria-label={`Open Pedumo ${item.label}`}
+              >
+                <span className="flex items-center gap-3">
+                  <span className="inline-grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--background-elevated)] text-brand-300">
+                    <item.icon className="h-5 w-5" />
+                  </span>
+                  <span className="font-medium">{item.label}</span>
+                </span>
+                <ArrowUpRight className="h-4 w-4 text-[var(--muted)] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-300" aria-hidden />
+              </a>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="principles" className="bg-[var(--background-subtle)]">
+        <SectionHeading
+          eyebrow="How PEDUMO Builds Software"
+          title="Engineering principles that make systems trustworthy"
+          description="Pedumo is not positioned as another agency or web design shop. The company is built around repeatable engineering practices that make software safer to ship and easier to operate."
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {engineeringPrinciples.map((principle, i) => (
+            <Reveal key={principle.title} delay={(i % 3) * 0.05}>
+              <article className="h-full rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 edge-highlight">
+                <span className="inline-grid h-11 w-11 place-items-center rounded-2xl border border-[var(--border)] bg-[var(--background-elevated)] text-brand-300">
+                  <principle.icon className="h-5 w-5" aria-hidden />
+                </span>
+                <h3 className="mt-4 text-lg font-semibold">{principle.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+                  {principle.description}
+                </p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       <Section className="!py-20">
@@ -338,84 +528,23 @@ export function HomePage() {
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </ButtonLink>
               <ButtonLink
-                href={siteConfig.founderLinks.linkedin}
-                variant="ghost"
-                external
-                aria-label="Founder on LinkedIn"
-              >
-                <LinkedInIcon className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink
-                href={siteConfig.founderLinks.x}
-                variant="ghost"
-                external
-                aria-label="Founder on Twitter / X"
-              >
-                <XIcon className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink
-                href={siteConfig.founderLinks.youtube}
-                variant="ghost"
-                external
-                aria-label="Founder on YouTube"
-              >
-                <YouTubeIcon className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink
-                href={siteConfig.founderLinks.instagram}
-                variant="ghost"
-                external
-                aria-label="Founder on Instagram"
-              >
-                <InstagramIcon className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink
                 href={siteConfig.founderLinks.website}
                 variant="ghost"
                 external
-                aria-label="Founder personal website"
+                aria-label="Founder website"
               >
                 <Globe className="h-4 w-4" />
               </ButtonLink>
+              <ButtonLink
+                href={siteConfig.founderLinks.medium}
+                variant="ghost"
+                external
+                aria-label="Founder on Medium"
+              >
+                <MediumIcon className="h-4 w-4" />
+              </ButtonLink>
             </Reveal>
           </div>
-        </div>
-      </Section>
-
-      <Section id="insights" className="bg-[var(--background-subtle)]">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            align="left"
-            eyebrow="Insights"
-            title="Thinking worth your time"
-            description="Perspectives on AI, cloud, security and software architecture — written for decision-makers."
-            className="!mx-0"
-          />
-          <Reveal>
-            <ButtonLink href="/insights" variant="outline">
-              All insights
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </ButtonLink>
-          </Reveal>
-        </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {insights.map((post, i) => (
-            <Reveal key={post.slug} delay={i * 0.06}>
-              <article className="flex h-full flex-col rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md edge-highlight">
-                <div className="flex items-center gap-3 text-xs text-[var(--muted)]">
-                  <span className="font-medium text-brand-300">{post.category}</span>
-                  <span aria-hidden>·</span>
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
-                  <span aria-hidden>·</span>
-                  <span>{post.readTime}</span>
-                </div>
-                <h3 className="mt-4 text-xl font-semibold tracking-tight">{post.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">
-                  {post.excerpt}
-                </p>
-              </article>
-            </Reveal>
-          ))}
         </div>
       </Section>
 

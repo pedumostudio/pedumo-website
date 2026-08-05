@@ -5,8 +5,8 @@ import { Reveal } from "@/components/motion";
 import { GridBackdrop } from "@/components/backgrounds";
 
 export function CTASection({
-  title = "Ready to build systems you can trust?",
-  description = "Book a strategic consultation. We will clarify scope, constraints and the fastest responsible path to production.",
+  title = "Let's Build Your Next Software Product",
+  description = "Bring Pedumo the product, platform or modernization challenge your organization cannot afford to get wrong. We will clarify the fastest responsible path to production.",
 }: {
   title?: string;
   description?: string;
@@ -27,16 +27,16 @@ export function CTASection({
             <p className="mt-4 text-pretty leading-relaxed text-white/70">{description}</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <ButtonLink href="/book" variant="dark" size="lg">
-                Book Strategic Consultation
+                Book a Consultation
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </ButtonLink>
               <ButtonLink
-                href="/contact"
+                href="/insights"
                 variant="outline"
                 size="lg"
                 className="border-white/20 text-white hover:bg-white/10"
               >
-                Contact the team
+                Read Engineering Insights
               </ButtonLink>
             </div>
           </div>

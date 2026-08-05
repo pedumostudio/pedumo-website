@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://pedumo.com/</loc><changefreq>weekly</changefreq><priority>1</priority></url>
-  <url><loc>https://pedumo.com/services</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://pedumo.com/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pedumo.com/founder</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pedumo.com/case-studies</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://pedumo.com/insights</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://pedumo.com/contact</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pedumo.com/book</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://pedumo.com/security</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pedumo.com/</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://pedumo.com/services</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pedumo.com/insights</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pedumo.com/open-source</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pedumo.com/journal</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pedumo.com/about</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pedumo.com/founder</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pedumo.com/case-studies</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pedumo.com/security</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pedumo.com/contact</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pedumo.com/book</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pedumo.com/status</loc><lastmod>2026-08-05</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://pedumo.com/privacy</loc><lastmod>2026-08-05</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://pedumo.com/terms</loc><lastmod>2026-08-05</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
 </urlset>

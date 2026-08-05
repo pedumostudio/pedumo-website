@@ -45,11 +45,11 @@ export function Hero() {
 
           <Reveal delay={0.2} className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/book" size="lg">
-              Book Strategic Consultation
+              Book a Consultation
               <ArrowRight className="h-4 w-4" aria-hidden />
             </ButtonLink>
-            <ButtonLink href="/services" variant="outline" size="lg">
-              Explore Capabilities
+            <ButtonLink href="/insights" variant="outline" size="lg">
+              Engineering Insights
             </ButtonLink>
           </Reveal>
 

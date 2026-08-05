@@ -1,7 +1,15 @@
 import { footerNav, siteConfig } from "@/lib/site";
 import { hrefOf } from "@/hooks/useHashRoute";
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/social-icons";
+import { DevToIcon, GitHubIcon, LinkedInIcon, MediumIcon, XIcon } from "@/components/social-icons";
 import { NewsletterForm } from "@/components/newsletter-form";
+
+const socialLinks = [
+  { label: "GitHub", href: siteConfig.socials.github, icon: GitHubIcon },
+  { label: "LinkedIn", href: siteConfig.socials.linkedin, icon: LinkedInIcon },
+  { label: "Medium", href: siteConfig.socials.medium, icon: MediumIcon },
+  { label: "DEV.to", href: siteConfig.socials.dev, icon: DevToIcon },
+  { label: "X", href: siteConfig.socials.x, icon: XIcon },
+];
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -9,8 +17,8 @@ export function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--background-subtle)]">
       <div className="mx-auto w-full max-w-7xl px-5 py-14 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
-          <div className="space-y-6">
+        <div className="grid gap-12 xl:grid-cols-[0.9fr_1.6fr]">
+          <div className="space-y-7">
             <div>
               <a href={hrefOf("/")} className="inline-flex items-center gap-2.5" aria-label="Pedumo Home">
                 <span className="inline-grid h-9 w-9 place-items-center rounded-xl bg-brand-600 text-sm font-bold text-white shadow-glow">
@@ -18,74 +26,64 @@ export function Footer() {
                 </span>
                 <span className="text-[15px] font-semibold tracking-tight">{siteConfig.name}</span>
               </a>
-              <p className="mt-3 max-w-sm text-sm leading-relaxed text-[var(--muted)]">
-                {siteConfig.tagline} Secure software engineering, distributed cloud infrastructure,
-                data platforms, and evaluated AI automation for mission-critical operations.
+              <p className="mt-3 max-w-md text-sm leading-relaxed text-[var(--muted)]">
+                {siteConfig.tagline} Secure software products, scalable cloud infrastructure,
+                responsible AI systems and engineering practices built for long-term trust.
               </p>
             </div>
 
-            {/* Newsletter Subscription */}
-            <div className="max-w-md pt-2">
+            <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
-                Engineering Briefings
+                Newsletter
               </p>
-              <p className="mt-1 text-xs text-[var(--muted)]">
-                Quarterly notes on system resilience, AI evaluation, and edge architecture.
-              </p>
-              <NewsletterForm className="mt-3" />
+              <NewsletterForm className="mt-3 max-w-md" />
             </div>
 
-            {/* Social profiles */}
-            <div className="flex items-center gap-2 pt-2">
-              <a
-                href={siteConfig.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--card)] text-[var(--muted)] transition-colors hover:text-brand-300"
-                aria-label="Pedumo on LinkedIn"
-              >
-                <LinkedInIcon className="h-4 w-4" />
-              </a>
-              <a
-                href={siteConfig.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--card)] text-[var(--muted)] transition-colors hover:text-brand-300"
-                aria-label="Pedumo on GitHub"
-              >
-                <GitHubIcon className="h-4 w-4" />
-              </a>
-              <a
-                href={siteConfig.socials.x}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--card)] text-[var(--muted)] transition-colors hover:text-brand-300"
-                aria-label="Pedumo on X"
-              >
-                <XIcon className="h-4 w-4" />
-              </a>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
+                Social Links
+              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] px-3 text-sm text-[var(--muted)] transition-colors hover:border-brand-400/45 hover:text-brand-300"
+                    aria-label={`Pedumo on ${social.label}`}
+                  >
+                    <social.icon className="h-4 w-4" />
+                    <span>{social.label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 xl:grid-cols-6">
             {Object.entries(footerNav).map(([group, links]) => (
-              <div key={group}>
+              <nav key={group} aria-label={`${group} footer navigation`}>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">
                   {group}
                 </p>
                 <ul className="mt-4 space-y-2.5">
-                  {links.map((link) => (
-                    <li key={link.href}>
-                      <a
-                        href={hrefOf(link.href)}
-                        className="text-sm text-[var(--foreground)]/85 transition-colors hover:text-brand-300"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
+                  {links.map((link) => {
+                    const external = "external" in link && link.external;
+                    return (
+                      <li key={`${group}-${link.href}-${link.label}`}>
+                        <a
+                          href={external ? link.href : hrefOf(link.href)}
+                          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                          className="text-sm text-[var(--foreground)]/85 transition-colors hover:text-brand-300"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
-              </div>
+              </nav>
             ))}
           </div>
         </div>

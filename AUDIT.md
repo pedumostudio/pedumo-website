@@ -1,86 +1,88 @@
-# Pedumo Production Readiness & LiveForm Integration Report
+# Pedumo Website Audit and Release Notes
 
-**Repository Target:** `https://github.com/pedumostudio/pedumo-website`  
-**Platform Target:** Cloudflare Workers (Edge runtime + Static Assets)  
-**Form Gateway:** `https://liveformhq.com/form/ec51c0e7-70a3-4bbd-97a2-215457068ed3`  
-**Date:** 2026-03-25  
+Date: 2026-08-05
+Branch: `arena/019fd290-pedumo-website`
 
----
+## Pre-change Audit
 
-## 1. LiveForm Integration Report
+### Broken links / missing pages
 
-All user-facing forms across the website connect directly to the verified LiveForm endpoint:
-`https://liveformhq.com/form/ec51c0e7-70a3-4bbd-97a2-215457068ed3`
+- `/open-source` was required but did not exist.
+- `/journal` was required but did not exist.
+- Sitemap omitted `/open-source`, `/journal`, `/privacy`, `/terms` and `/status`.
+- The app used hash-only routes, while canonical metadata and sitemap used clean URLs. Direct clean-path visits could render the wrong SPA route before routing was updated.
 
-### Forms Integrated
-1. **Contact Inquiry Form** (`/contact`) — Transmits name, work email, organization, message, metadata, and honeypot.
-2. **Strategic Consultation Request Form** (`/book`) — Transmits consultation requirements, target timeline, project scope, and metadata.
-3. **Engineering Briefing Newsletter Form** (Footer) — Transmits subscriber work email with duplicate prevention and feedback.
+### Incorrect social links
 
-### Form Reliability & UX Hardening
-- **Client-side Validation:** Real-time email pattern checking (`/^[^\s@]+@[^\s@]+\.[^\s@]+$/`) and minimum message length checks.
-- **Duplicate Prevention:** State lock during `submitting` with disabled controls.
-- **Loading State:** Animated transmission spinner with `Transmitting…` / `Subscribing…` labels.
-- **Data Preservation:** User input is preserved in component state upon failure; errors trigger an assertive `role="alert"` region.
-- **Honeypot Anti-Spam:** `_gotcha` field silently traps spam bots.
-- **Telemetry Enrichment:** Submissions append `page_url`, `submitted_at`, and viewport telemetry for fast triage.
+- GitHub pointed to `https://github.com/pedumostudio` instead of `https://github.com/pedumolab`.
+- X pointed to `https://x.com/pedumolabs` instead of `https://x.com/pedumolab`.
+- Facebook links were present even though they were not part of the verified social link list.
+- Founder-only social links existed for networks not included in the requested verified list.
 
----
+### Missing / misleading product surfaces
 
-## 2. Cloudflare Workers Verification
+- Homepage did not include the requested Engineering Insights, featured repository listing, Latest Engineering Activity, newsletter status, trust indicator row and engineering principles sections.
+- Newsletter form submitted to LiveForm and showed subscription success, which implied a working newsletter backend.
+- `/insights` existed but was not yet positioned as a central knowledge hub.
 
-| Item | Configuration | Status |
-|---|---|---|
-| **Wrangler Configuration** | `wrangler.jsonc` & `wrangler.toml` specifying `assets = { directory = "./dist" }` | Verified |
-| **Worker Script** | `src/worker.ts` with `fetch(request, env)` handler | Verified |
-| **Edge Health Check** | `/api/health` returning JSON with edge data center identifier (`cf.colo`) | Verified |
-| **Edge CSP** | Allows `https://liveformhq.com`, Google Fonts, and self origin | Verified |
-| **HSTS & Security Headers** | HSTS (1 year), `X-Frame-Options: DENY`, `nosniff`, `Permissions-Policy` | Verified |
-| **Cache-Control Policy** | Immutable 1-year cache on static assets; `max-age=0, must-revalidate` on HTML | Verified |
-| **SPA Fallback** | Handled natively by Workers ASSETS binding and `public/_redirects` | Verified |
+### SEO issues
 
----
+- Static metadata in `index.html` referenced outdated social URLs and Facebook.
+- Open Graph image `/og.png` was referenced but no `public/og.png` asset existed.
+- Dynamic SEO metadata did not set Twitter/X site and creator handles from the verified profile.
+- Sitemap was incomplete.
 
-## 3. Founder Information Consistency
+### Performance / Lighthouse risks
 
-- **Name:** Balogun Adeolu
-- **Title:** Founder & Software Engineer
-- **Email:** `ceo@pedumo.com`
-- **Website:** `https://www.balogunadeolu.com`
-- **Social Handles & Profile Links:**
-  - **LinkedIn:** `@balogunpedumo` (`https://www.linkedin.com/in/balogunpedumo`)
-  - **Twitter (X):** `@balogunpedumo` (`https://x.com/balogunpedumo`)
-  - **YouTube:** `@balogunpedumo` (`https://youtube.com/@balogunpedumo`)
-  - **Instagram:** `@balogunpedumo` (`https://instagram.com/balogunpedumo`)
-  - **Facebook:** `@balogunpedumo` (`https://facebook.com/balogunpedumo`)
-  - **WhatsApp:** `@balogunpedumo` (`https://wa.me/message/balogunpedumo`)
-  - **GitHub:** `https://github.com/balogunadeolu`
-- **Portrait Policy:** Authentic photograph at `/pedumoceo.jpg` rendered completely unobscured (zero overlay cards, zero floating text).
+- Initial dependency install was missing (`node_modules` absent), so the first build attempt failed with `vite: not found`.
+- `npm audit` reported Vite/esbuild vulnerabilities before dependency updates.
+- Homepage contains a canvas/SVG engineering visualization and multiple content sections; animation remains restrained and respects `prefers-reduced-motion`.
 
----
+### Accessibility / mobile observations
 
-## 4. Accessibility (a11y) Verification
+- Existing skip link, semantic landmarks, focus states and reduced-motion handling were present.
+- New route and footer structure required keyboard-accessible, overflow-safe links and minimum 44px interactive targets.
 
-- **Semantic Landmarks:** `<header>`, `<main id="main">`, `<footer>`, `<nav>`, `<section>`, `<article>`.
-- **Keyboard Navigation:** Focus rings on interactive elements, `Escape` key drawer close listener, skip to content link.
-- **Screen Reader Support:** ARIA attributes (`aria-expanded`, `aria-controls`, `aria-describedby`, `aria-live`).
-- **Touch Targets:** Minimum 44×44px interactive areas across mobile controls.
-- **Reduced Motion:** Respects `prefers-reduced-motion` across CSS animations, canvas packet flow, and marquee.
+### Dead / duplicate code observations
 
----
+- Newsletter submission code would become dead once the newsletter was changed to a non-operational notice.
+- Branded social icons for unsupported networks were unnecessary once social links were corrected.
+- `framer-motion` was listed in dependencies but not imported anywhere in `src`.
 
-## 5. SEO & Structured Data
+## Changes Implemented
 
-- **Canonical URL:** `https://pedumo.com/`
-- **JSON-LD Schema Graphs:** `Organization`, `Person`, `FAQPage`, `AboutPage`.
-- **Meta Directives:** `robots.txt` indexable; `sitemap.xml` with priority indices; `site.webmanifest` configured.
-- **Social Sharing:** Open Graph and Twitter summary cards with 1200×630px image dimensions.
+- Added clean path routing with legacy `#/route` migration support.
+- Added `/open-source` and `/journal` pages.
+- Rebuilt homepage with Engineering Insights, Open Source, Latest Engineering Activity, Newsletter status, Trust Indicators and Engineering Principles sections.
+- Converted the newsletter component into an honest disabled state that displays: `Newsletter backend not yet configured.`
+- Updated verified social links and removed unsupported company social networks.
+- Rebuilt footer around Products, Engineering, Open Source, Resources, Company, Legal, Newsletter, Social Links and Copyright.
+- Updated `/insights` into a knowledge hub with the four requested seeded articles.
+- Added data models for future GitHub, activity, journal and feed integrations.
+- Updated SEO metadata, structured data, sitemap, robots and web manifest.
+- Added a deterministic `public/og.png` Open Graph image.
+- Removed unused `framer-motion` dependency.
+- Updated generic scaffold package metadata to `pedumo-website`.
+- Updated Vite/esbuild dependency tree until `npm audit --audit-level=low` reported zero vulnerabilities.
+- Added `README.md` with route, validation and integration documentation.
 
----
+## Validation Notes
 
-## 6. Build & Bundle Verification
+Executed after implementation:
 
-- **Command:** `npm run build`
-- **Modules Transformed:** 1833
-- **Bundle Output:** `dist/index.html` (386.78 kB uncompressed │ 110.85 kB gzip)
-- **Status:** Clean build with 0 warnings and 0 errors.
+```bash
+npm ci
+npx tsc --noEmit
+npm run build
+npm audit --audit-level=low
+```
+
+Results:
+
+- TypeScript validation completed with no errors.
+- Production build completed successfully.
+- `npm audit --audit-level=low` reported zero vulnerabilities.
+- Clean route requests for `/`, `/services`, `/insights`, `/open-source`, `/journal`, `/about`, `/founder`, `/case-studies`, `/security`, `/contact`, `/book`, `/status`, `/privacy` and `/terms` returned the built SPA shell from Vite preview.
+- Lighthouse could not run in this sandbox because no Chrome/Chromium executable is installed for the Lighthouse CLI.
+
+Manual browser QA should still verify footer links, social links, disabled newsletter, contact forms, mobile breakpoints and metadata in the production deployment environment.

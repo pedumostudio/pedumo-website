@@ -38,11 +38,11 @@ const LINKS: { from: string; to: string; dashed?: boolean }[] = [
 ];
 
 const METRICS = [
-  { label: "p99 latency", value: "42ms" },
-  { label: "error budget", value: "99.95%" },
-  { label: "deploy cadence", value: "18/day" },
-  { label: "edge regions", value: "6 live" },
-  { label: "policy checks", value: "pass" },
+  { label: "release posture", value: "automated" },
+  { label: "security gate", value: "required" },
+  { label: "observability", value: "designed" },
+  { label: "scaling model", value: "cloud native" },
+  { label: "policy checks", value: "required" },
 ];
 
 function kindColor(kind: NodeDef["kind"]) {

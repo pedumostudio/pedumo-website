@@ -1,7 +1,7 @@
 {
-  "name": "react-vite-tailwind",
+  "name": "pedumo-website",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "clsx": "2.1.1",
-    "framer-motion": "^12.43.0",
     "lucide-react": "^1.28.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
@@ -24,7 +23,7 @@
     "@vitejs/plugin-react": "5.1.1",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
-    "vite": "7.3.2",
+    "vite": "^7.3.6",
     "vite-plugin-singlefile": "2.3.0"
   }
 }

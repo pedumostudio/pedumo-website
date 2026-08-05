@@ -404,31 +404,230 @@ export const caseStudies = [
 
 export const insights = [
   {
-    slug: "secure-sdlc-without-slowing-down",
-    title: "A secure SDLC that does not slow delivery",
+    slug: "businesses-dont-have-a-technology-problem",
+    title: "Why Most Businesses Don't Have a Technology Problem",
     excerpt:
-      "How threat modeling, automated checks and review gates fit into short cycles without becoming theater.",
-    date: "2026-02-12",
+      "Technology rarely fails in isolation. The deeper issue is usually unclear ownership, weak process design, missing operating discipline, or software that was never tied to a measurable business outcome.",
+    date: "2026-08-05",
+    category: "Engineering Strategy",
+    readTime: "6 min",
+    source: "PEDUMO Website",
+    summaryPoints: [
+      "Diagnose operating constraints before prescribing software.",
+      "Tie every build decision to a business capability or risk reduction.",
+      "Use engineering to strengthen the organization, not decorate it.",
+    ],
+  },
+  {
+    slug: "building-secure-apis",
+    title: "Building Secure APIs",
+    excerpt:
+      "Secure APIs are designed around identity, authorization, validation, observability and abuse resistance from the first endpoint — not patched after launch week.",
+    date: "2026-08-05",
     category: "Security",
     readTime: "7 min",
+    source: "PEDUMO Website",
+    summaryPoints: [
+      "Start with threat modeling, trust boundaries and least privilege.",
+      "Validate inputs, outputs and rate limits as product requirements.",
+      "Instrument logs and traces so abuse patterns are visible early.",
+    ],
   },
   {
-    slug: "ai-that-survives-production",
-    title: "AI that survives contact with production",
+    slug: "engineering-ai-responsibly",
+    title: "Engineering AI Responsibly",
     excerpt:
-      "Evaluation harnesses, grounding and human oversight — the difference between a demo and a system you can defend.",
-    date: "2026-01-28",
-    category: "AI",
-    readTime: "9 min",
+      "Responsible AI is an engineering discipline: evaluations, grounding, human review paths, privacy controls and clear failure modes before production exposure.",
+    date: "2026-08-05",
+    category: "AI Engineering",
+    readTime: "8 min",
+    source: "PEDUMO Website",
+    summaryPoints: [
+      "Treat model output as probabilistic until measured and governed.",
+      "Build evaluation harnesses that reflect real user and business risk.",
+      "Keep humans in the loop where safety, money or reputation are affected.",
+    ],
   },
   {
-    slug: "total-cost-of-fragile-software",
-    title: "The total cost of fragile software",
+    slug: "cloud-infrastructure-that-scales",
+    title: "Cloud Infrastructure That Scales",
     excerpt:
-      "Why the cheapest build often becomes the most expensive system — and how architecture choices compound.",
-    date: "2026-01-10",
-    category: "Engineering",
-    readTime: "6 min",
+      "Scalable cloud platforms combine clear service boundaries, automated delivery, resilient data paths, cost visibility and recovery plans that have been tested under pressure.",
+    date: "2026-08-05",
+    category: "Cloud",
+    readTime: "7 min",
+    source: "PEDUMO Website",
+    summaryPoints: [
+      "Design for failure domains, not ideal-path diagrams.",
+      "Automate environments so infrastructure can be reproduced and audited.",
+      "Measure latency, availability and cost as first-class product signals.",
+    ],
+  },
+];
+
+export const openSourceRepositories = [
+  {
+    id: "pedumo-website",
+    name: "PEDUMO Website",
+    description:
+      "The public web platform for Pedumo's engineering presence, built as a performance-focused React and Cloudflare Workers application.",
+    area: "Web Platform",
+    icon: Code2,
+    status: "Public repository verified under current origin",
+    href: "https://github.com/pedumo/pedumo-website",
+    repoSlug: "pedumo/pedumo-website",
+  },
+  {
+    id: "pedumo-docs",
+    name: "PEDUMO Docs",
+    description:
+      "Documentation space for architecture notes, engineering standards and operational runbooks once the public repository is configured.",
+    area: "Documentation",
+    icon: FileCheck2,
+    status: "GitHub integration pending",
+    href: "https://github.com/pedumolab",
+    repoSlug: "pedumolab/pedumo-docs",
+  },
+  {
+    id: "pedumo-cloud",
+    name: "PEDUMO Cloud",
+    description:
+      "Reference cloud infrastructure patterns for resilient, observable and cost-aware platforms.",
+    area: "Cloud",
+    icon: Cloud,
+    status: "GitHub integration pending",
+    href: "https://github.com/pedumolab",
+    repoSlug: "pedumolab/pedumo-cloud",
+  },
+  {
+    id: "pedumo-security",
+    name: "PEDUMO Security",
+    description:
+      "Security checklists, hardening guides and DevSecOps examples prepared for public release.",
+    area: "Security",
+    icon: ShieldCheck,
+    status: "GitHub integration pending",
+    href: "https://github.com/pedumolab",
+    repoSlug: "pedumolab/pedumo-security",
+  },
+  {
+    id: "pedumo-ai",
+    name: "PEDUMO AI",
+    description:
+      "Responsible AI engineering examples focused on evaluation, governance and safe automation.",
+    area: "AI",
+    icon: BrainCircuit,
+    status: "GitHub integration pending",
+    href: "https://github.com/pedumolab",
+    repoSlug: "pedumolab/pedumo-ai",
+  },
+  {
+    id: "pedumo-labs",
+    name: "PEDUMO Labs",
+    description:
+      "Research prototypes and architecture experiments that demonstrate how Pedumo explores emerging engineering patterns.",
+    area: "Research",
+    icon: TestTube2,
+    status: "GitHub integration pending",
+    href: "https://github.com/pedumolab",
+    repoSlug: "pedumolab/pedumo-labs",
+  },
+];
+
+export const engineeringActivity = [
+  {
+    title: "Updated PEDUMO Website",
+    description: "Homepage converted into a living engineering platform with insights, activity, open source and principles sections.",
+    area: "Web Platform",
+  },
+  {
+    title: "New Documentation",
+    description: "Repository and platform documentation surfaces prepared for public engineering notes and runbooks.",
+    area: "Documentation",
+  },
+  {
+    title: "Security Improvements",
+    description: "Security metadata, headers, responsible disclosure surfaces and secure delivery messaging reviewed.",
+    area: "Security",
+  },
+  {
+    title: "AI Research",
+    description: "Responsible AI engineering guidance added to the knowledge hub for future research updates.",
+    area: "AI",
+  },
+  {
+    title: "Cloud Architecture",
+    description: "Cloud infrastructure principles added for repeat visitors tracking platform architecture thinking.",
+    area: "Cloud",
+  },
+];
+
+export const engineeringPrinciples = [
+  {
+    title: "Security First",
+    icon: ShieldCheck,
+    description: "Threat modeling, least privilege, encryption and secure defaults are part of the first design review.",
+  },
+  {
+    title: "Scalability by Design",
+    icon: Gauge,
+    description: "Systems are shaped around growth paths, failure domains and measurable performance envelopes.",
+  },
+  {
+    title: "Automation",
+    icon: RefreshCcw,
+    description: "Delivery, testing, infrastructure and operational checks are automated wherever repetition creates risk.",
+  },
+  {
+    title: "Maintainability",
+    icon: Layers,
+    description: "Clean boundaries, readable code and practical architecture keep systems changeable after launch.",
+  },
+  {
+    title: "Documentation",
+    icon: FileCheck2,
+    description: "Decisions, runbooks and operating assumptions are written so knowledge survives handoff and growth.",
+  },
+  {
+    title: "Performance",
+    icon: Activity,
+    description: "Latency, bundle weight, query cost and infrastructure efficiency are treated as product quality.",
+  },
+  {
+    title: "Cloud Native",
+    icon: Cloud,
+    description: "Platforms are built for elastic infrastructure, edge delivery, observability and reproducible environments.",
+  },
+  {
+    title: "Testing",
+    icon: TestTube2,
+    description: "Automated and manual verification prove behavior before releases reach customers.",
+  },
+  {
+    title: "DevSecOps",
+    icon: GitBranch,
+    description: "Security, delivery and operations are integrated into one continuous engineering system.",
+  },
+];
+
+export const journalSources = [
+  {
+    name: "PEDUMO Website Articles",
+    description: "Original engineering articles published directly on pedumo.com.",
+    href: "/insights",
+    status: "Active",
+  },
+  {
+    name: "DEV.to",
+    description: "Future aggregation from the Pedumo DEV Community profile.",
+    href: "https://dev.to/pedumo",
+    status: "Integration pending.",
+  },
+  {
+    name: "Medium",
+    description: "Future aggregation from the founder's Medium publication stream.",
+    href: "https://medium.com/@balogunadeolu",
+    status: "Integration pending.",
   },
 ];
 

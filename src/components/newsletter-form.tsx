@@ -1,109 +1,48 @@
-import { useState, type FormEvent } from "react";
-import { Button } from "@/components/ui/button";
-import { submitToLiveForm } from "@/lib/liveform";
-import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { MailWarning } from "lucide-react";
 
 export function NewsletterForm({ className = "" }: { className?: string }) {
-  const [email, setEmail] = useState("");
-  const [gotcha, setGotcha] = useState("");
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (status === "submitting") return;
-
-    const trimmed = email.trim();
-    if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-      setStatus("error");
-      setMessage("Please enter a valid email address.");
-      return;
-    }
-
-    setStatus("submitting");
-    setMessage("");
-
-    const result = await submitToLiveForm({
-      email: trimmed,
-      form_intent: "newsletter",
-      subject: `[Pedumo Newsletter] New Subscriber: ${trimmed}`,
-      _gotcha: gotcha,
-    });
-
-    if (result.success) {
-      setStatus("success");
-      setEmail("");
-    } else {
-      setStatus("error");
-      setMessage(result.error || "Subscription failed. Please try again later.");
-    }
-  }
-
-  if (status === "success") {
-    return (
-      <div
-        className={`flex items-center gap-2 rounded-2xl border border-accent-500/30 bg-accent-500/10 p-4 text-sm text-accent-300 ${className}`}
-        role="status"
-        aria-live="polite"
-      >
-        <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden="true" />
-        <span>Subscribed. You will receive engineering briefs and architecture notes.</span>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={onSubmit} className={`space-y-3 ${className}`} noValidate>
-      <input
-        type="text"
-        name="_gotcha"
-        value={gotcha}
-        onChange={(e) => setGotcha(e.target.value)}
-        tabIndex={-1}
-        autoComplete="off"
-        className="sr-only"
-        aria-hidden="true"
-      />
-      <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
-        <label htmlFor="newsletter-email" className="sr-only">
-          Email address for engineering insights
+    <div
+      className={`rounded-3xl border border-[var(--border)] bg-[var(--card)] p-5 edge-highlight ${className}`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="flex items-start gap-3">
+        <span className="inline-grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-warning/30 bg-warning/10 text-warning">
+          <MailWarning className="h-5 w-5" aria-hidden="true" />
+        </span>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold text-[var(--foreground)]">Engineering newsletter</p>
+          <p className="mt-1 text-sm leading-relaxed text-[var(--muted)]">
+            Newsletter backend not yet configured.
+          </p>
+        </div>
+      </div>
+      <div className="mt-4 flex flex-col gap-2.5 sm:flex-row">
+        <label htmlFor="newsletter-email-disabled" className="sr-only">
+          Newsletter email address
         </label>
         <input
-          id="newsletter-email"
+          id="newsletter-email-disabled"
           type="email"
           inputMode="email"
-          required
-          autoComplete="email"
-          placeholder="Enter work email for insights…"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            if (status === "error") setMessage("");
-          }}
-          className="min-h-[44px] flex-1 rounded-2xl border border-[var(--border-strong)] bg-[var(--background-sunken)] px-4 py-2.5 text-sm text-[var(--foreground)] outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-500/25"
+          placeholder="work email"
+          disabled
+          aria-describedby="newsletter-disabled-note"
+          className="min-h-[44px] flex-1 cursor-not-allowed rounded-2xl border border-[var(--border-strong)] bg-[var(--background-sunken)] px-4 py-2.5 text-sm text-[var(--muted)] opacity-75"
         />
-        <Button
-          type="submit"
-          disabled={status === "submitting"}
-          size="sm"
-          className="min-h-[44px] shrink-0"
+        <button
+          type="button"
+          disabled
+          className="min-h-[44px] cursor-not-allowed rounded-2xl border border-[var(--border-strong)] px-4 py-2.5 text-sm font-medium text-[var(--muted)] opacity-75"
         >
-          {status === "submitting" ? (
-            <span className="inline-flex items-center gap-2">
-              <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
-              Subscribing…
-            </span>
-          ) : (
-            "Subscribe"
-          )}
-        </Button>
+          Subscribe
+        </button>
       </div>
-      {status === "error" && message ? (
-        <p className="flex items-center gap-1.5 text-xs text-danger" role="alert">
-          <AlertCircle className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-          <span>{message}</span>
-        </p>
-      ) : null}
-    </form>
+      <p id="newsletter-disabled-note" className="mt-3 text-xs leading-relaxed text-[var(--muted)]">
+        Email subscriptions will be enabled only after a verified email service and consent workflow
+        are configured.
+      </p>
+    </div>
   );
 }

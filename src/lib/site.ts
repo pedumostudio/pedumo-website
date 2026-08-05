@@ -11,9 +11,9 @@ export const FOUNDER_IMAGE_SRC = "https://pedumo.com/pedumoceo.jpg";
 export const siteConfig = {
   name: "Pedumo",
   legalName: "Pedumo Technologies",
-  tagline: "Engineering Intelligent Business Solutions.",
+  tagline: "Engineering intelligent software products.",
   description:
-    "Pedumo is a technology engineering and AI automation partner. We build secure software, cloud infrastructure, data intelligence and cyber resilience for startups, enterprises and governments.",
+    "Pedumo is an engineering company building secure software products, cloud platforms, AI systems and resilient digital infrastructure for organizations that need technology they can trust.",
   url: "https://pedumo.com",
   ogImage: "https://pedumo.com/og.png",
   email: "ceo@pedumo.com",
@@ -24,21 +24,20 @@ export const siteConfig = {
   founder: "Balogun Adeolu",
   founderTitle: "Founder & Software Engineer",
   founderLinks: {
-    linkedin: "https://www.linkedin.com/in/balogunpedumo",
-    x: "https://x.com/balogunpedumo",
-    youtube: "https://youtube.com/@balogunpedumo",
-    instagram: "https://instagram.com/balogunpedumo",
-    facebook: "https://facebook.com/balogunpedumo",
-    whatsapp: "https://wa.me/message/balogunpedumo",
-    github: "https://github.com/balogunadeolu",
-    website: "https://www.balogunadeolu.com",
+    website: "https://balogunadeolu.com",
+    medium: "https://medium.com/@balogunadeolu",
     email: "ceo@pedumo.com",
   },
   socials: {
+    website: "https://pedumo.com",
     linkedin: "https://www.linkedin.com/company/pedumo",
-    github: "https://github.com/pedumostudio",
-    x: "https://x.com/pedumolabs",
-    facebook: "https://facebook.com/pedumostudios",
+    github: "https://github.com/pedumolab",
+    x: "https://x.com/pedumolab",
+    dev: "https://dev.to/pedumo",
+    medium: "https://medium.com/@balogunadeolu",
+  },
+  socialHandles: {
+    x: "@pedumolab",
   },
 } as const;
 
@@ -49,29 +48,44 @@ export type NavItem = {
 };
 
 export const primaryNav: NavItem[] = [
-  { label: "Services", href: "/services", description: "Nine engineering disciplines." },
-  { label: "Case Studies", href: "/case-studies", description: "How we think, demonstrated." },
+  { label: "Engineering", href: "/services", description: "Nine engineering disciplines." },
+  { label: "Insights", href: "/insights", description: "Engineering articles and research notes." },
+  { label: "Open Source", href: "/open-source", description: "Featured Pedumo repositories." },
+  { label: "Journal", href: "/journal", description: "Publishing channels and integration status." },
   { label: "About", href: "/about", description: "Mission, vision and values." },
-  { label: "Founder", href: "/founder", description: "Meet Balogun Adeolu." },
-  { label: "Insights", href: "/insights", description: "Engineering notes for leaders." },
   { label: "Contact", href: "/contact", description: "Start a conversation." },
 ];
 
 export const footerNav = {
+  Products: [
+    { label: "Software Products", href: "/services#software-engineering" },
+    { label: "AI Systems", href: "/services#ai-automation" },
+    { label: "Cloud Platforms", href: "/services#cloud-engineering" },
+    { label: "Security Programs", href: "/security" },
+  ],
+  Engineering: [
+    { label: "How PEDUMO Builds Software", href: "/#principles" },
+    { label: "Capabilities", href: "/services" },
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "Latest Activity", href: "/#activity" },
+  ],
+  "Open Source": [
+    { label: "Featured Repositories", href: "/open-source" },
+    { label: "PEDUMO Website", href: "/open-source#pedumo-website" },
+    { label: "PEDUMO Docs", href: "/open-source#pedumo-docs" },
+    { label: "GitHub Organization", href: siteConfig.socials.github, external: true },
+  ],
+  Resources: [
+    { label: "Documentation", href: "/open-source#pedumo-docs" },
+    { label: "Articles", href: "/insights" },
+    { label: "Engineering Journal", href: "/journal" },
+    { label: "Status", href: "/status" },
+  ],
   Company: [
     { label: "About", href: "/about" },
     { label: "Founder", href: "/founder" },
     { label: "Contact", href: "/contact" },
-    { label: "Book Consultation", href: "/book" },
-  ],
-  Capabilities: [
-    { label: "All services", href: "/services" },
-    { label: "Case Studies", href: "/case-studies" },
-    { label: "Security", href: "/security" },
-  ],
-  Resources: [
-    { label: "Insights", href: "/insights" },
-    { label: "Status", href: "/status" },
+    { label: "Book a Consultation", href: "/book" },
   ],
   Legal: [
     { label: "Privacy", href: "/privacy" },

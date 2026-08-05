@@ -84,7 +84,7 @@ export function Header({ path }: { path: string }) {
 
         <div className="hidden items-center gap-2 lg:flex">
           <ButtonLink href="/book" size="sm">
-            Book consultation
+            Book a Consultation
             <ArrowRight className="h-3.5 w-3.5" aria-hidden />
           </ButtonLink>
         </div>
@@ -128,7 +128,7 @@ export function Header({ path }: { path: string }) {
             );
           })}
           <ButtonLink href="/book" className="mt-2 min-h-[44px] w-full">
-            Book consultation
+            Book a Consultation
           </ButtonLink>
         </nav>
       </div>

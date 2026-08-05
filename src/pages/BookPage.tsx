@@ -15,8 +15,8 @@ export function BookPage() {
   return (
     <>
       <Seo
-        title="Book Consultation"
-        description="Book a strategic consultation with Pedumo — clarify scope, constraints and the path to production."
+        title="Book a Consultation"
+        description="Book a consultation with Pedumo — clarify scope, constraints and the path to production."
         path="/book"
       />
       <PageHero

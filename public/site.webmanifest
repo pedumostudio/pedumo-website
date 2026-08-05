@@ -1,8 +1,9 @@
 {
   "name": "Pedumo Technologies",
   "short_name": "Pedumo",
-  "description": "Pedumo is a technology engineering and AI automation partner.",
+  "description": "Pedumo is an engineering company building secure software products, cloud platforms, AI systems and resilient digital infrastructure.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#060912",
   "theme_color": "#060912",

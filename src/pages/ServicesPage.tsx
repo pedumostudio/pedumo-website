@@ -27,7 +27,7 @@ export function ServicesPage() {
         description="Every capability an organization needs to build, secure and scale intelligent systems — delivered by a partner who owns outcomes end to end."
       >
         <ButtonLink href="/book">
-          Book consultation
+          Book a Consultation
           <ArrowRight className="h-4 w-4" aria-hidden />
         </ButtonLink>
       </PageHero>

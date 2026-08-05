@@ -11,15 +11,14 @@ export function StatusPage() {
       <Seo title="Status" description="Pedumo service status." path="/status" />
       <PageHero
         eyebrow="Status"
-        title="All systems operational"
-        description="This static marketing build reports nominal status. Production operational telemetry lives on the Pedumo platform status surface."
+        title="Website status"
+        description="This page confirms the public website status surface. Full platform telemetry is not configured in this repository."
       />
       <Section className="!pt-4">
         <div className="rounded-3xl border border-accent-500/25 bg-accent-500/10 p-6 sm:p-8">
-          <p className="text-sm font-medium text-accent-300">Website · Operational</p>
+          <p className="text-sm font-medium text-accent-300">Website shell · Available</p>
           <p className="mt-2 text-[var(--muted)]">
-            Last checked:{" "}
-            {new Date().toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })}
+            Platform telemetry backend not yet configured.
           </p>
         </div>
       </Section>
