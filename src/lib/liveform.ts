@@ -79,7 +79,7 @@ export async function submitToLiveForm(
     return {
       success: false,
       error:
-        "Network communication error. Please verify your connection or write directly to ceo@pedumo.com.",
+        "Network communication error. Please verify your connection or write directly to contact@pedumo.com.",
     };
   }
 }

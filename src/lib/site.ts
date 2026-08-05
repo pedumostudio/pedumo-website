@@ -16,7 +16,7 @@ export const siteConfig = {
     "Pedumo is an engineering company building secure software products, cloud platforms, AI systems and resilient digital infrastructure for organizations that need technology they can trust.",
   url: "https://pedumo.com",
   ogImage: "https://pedumo.com/og.png",
-  email: "ceo@pedumo.com",
+  email: "contact@pedumo.com",
   bookingEmail: "booking@pedumo.com",
   supportEmail: "support@pedumo.com",
   securityEmail: "security@pedumo.com",
@@ -26,7 +26,7 @@ export const siteConfig = {
   founderLinks: {
     website: "https://balogunadeolu.com",
     medium: "https://medium.com/@balogunadeolu",
-    email: "ceo@pedumo.com",
+    email: "contact@pedumo.com",
   },
   socials: {
     website: "https://pedumo.com",
