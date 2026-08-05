@@ -15,8 +15,6 @@ import {
   Activity,
   Layers,
   ClipboardCheck,
-  Search,
-  PenTool,
   TestTube2,
   Rocket,
   Building2,
@@ -465,7 +463,20 @@ export const insights = [
   },
 ];
 
-export const openSourceRepositories = [
+export type OpenSourceRepository = {
+  id: string;
+  name: string;
+  description: string;
+  area: string;
+  icon: LucideIcon;
+  status: string;
+  href: string;
+  repoSlug: string;
+  githubOwner: string;
+  githubRepo: string;
+};
+
+export const openSourceRepositories: OpenSourceRepository[] = [
   {
     id: "pedumo-website",
     name: "PEDUMO Website",
@@ -473,9 +484,11 @@ export const openSourceRepositories = [
       "The public web platform for Pedumo's engineering presence, built as a performance-focused React and Cloudflare Workers application.",
     area: "Web Platform",
     icon: Code2,
-    status: "Public repository verified under current origin",
+    status: "Live GitHub metadata available",
     href: "https://github.com/pedumo/pedumo-website",
     repoSlug: "pedumo/pedumo-website",
+    githubOwner: "pedumo",
+    githubRepo: "pedumo-website",
   },
   {
     id: "pedumo-docs",
@@ -484,9 +497,11 @@ export const openSourceRepositories = [
       "Documentation space for architecture notes, engineering standards and operational runbooks once the public repository is configured.",
     area: "Documentation",
     icon: FileCheck2,
-    status: "GitHub integration pending",
+    status: "GitHub repository pending",
     href: "https://github.com/pedumolab",
     repoSlug: "pedumolab/pedumo-docs",
+    githubOwner: "pedumolab",
+    githubRepo: "pedumo-docs",
   },
   {
     id: "pedumo-cloud",
@@ -495,9 +510,11 @@ export const openSourceRepositories = [
       "Reference cloud infrastructure patterns for resilient, observable and cost-aware platforms.",
     area: "Cloud",
     icon: Cloud,
-    status: "GitHub integration pending",
+    status: "GitHub repository pending",
     href: "https://github.com/pedumolab",
     repoSlug: "pedumolab/pedumo-cloud",
+    githubOwner: "pedumolab",
+    githubRepo: "pedumo-cloud",
   },
   {
     id: "pedumo-security",
@@ -506,9 +523,11 @@ export const openSourceRepositories = [
       "Security checklists, hardening guides and DevSecOps examples prepared for public release.",
     area: "Security",
     icon: ShieldCheck,
-    status: "GitHub integration pending",
+    status: "GitHub repository pending",
     href: "https://github.com/pedumolab",
     repoSlug: "pedumolab/pedumo-security",
+    githubOwner: "pedumolab",
+    githubRepo: "pedumo-security",
   },
   {
     id: "pedumo-ai",
@@ -517,9 +536,11 @@ export const openSourceRepositories = [
       "Responsible AI engineering examples focused on evaluation, governance and safe automation.",
     area: "AI",
     icon: BrainCircuit,
-    status: "GitHub integration pending",
+    status: "GitHub repository pending",
     href: "https://github.com/pedumolab",
     repoSlug: "pedumolab/pedumo-ai",
+    githubOwner: "pedumolab",
+    githubRepo: "pedumo-ai",
   },
   {
     id: "pedumo-labs",
@@ -528,9 +549,11 @@ export const openSourceRepositories = [
       "Research prototypes and architecture experiments that demonstrate how Pedumo explores emerging engineering patterns.",
     area: "Research",
     icon: TestTube2,
-    status: "GitHub integration pending",
+    status: "GitHub repository pending",
     href: "https://github.com/pedumolab",
     repoSlug: "pedumolab/pedumo-labs",
+    githubOwner: "pedumolab",
+    githubRepo: "pedumo-labs",
   },
 ];
 
@@ -729,5 +752,3 @@ export const founderExpertise = [
   { icon: Cloud, label: "Cloud infrastructure & DevOps" },
   { icon: Target, label: "Digital transformation strategy" },
 ];
-
-export const processIcons = [Search, PenTool, Layers, ServerCog, Code2, TestTube2, Rocket, Activity];

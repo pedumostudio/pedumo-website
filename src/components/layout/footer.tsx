@@ -1,15 +1,25 @@
-import { footerNav, siteConfig } from "@/lib/site";
+import type { ComponentType, SVGProps } from "react";
+import { Globe } from "lucide-react";
+import { footerNav, officialLinks, siteConfig, type OfficialLink } from "@/lib/site";
 import { hrefOf } from "@/hooks/useHashRoute";
 import { DevToIcon, GitHubIcon, LinkedInIcon, MediumIcon, XIcon } from "@/components/social-icons";
 import { NewsletterForm } from "@/components/newsletter-form";
 
-const socialLinks = [
-  { label: "GitHub", href: siteConfig.socials.github, icon: GitHubIcon },
-  { label: "LinkedIn", href: siteConfig.socials.linkedin, icon: LinkedInIcon },
-  { label: "Medium", href: siteConfig.socials.medium, icon: MediumIcon },
-  { label: "DEV.to", href: siteConfig.socials.dev, icon: DevToIcon },
-  { label: "X", href: siteConfig.socials.x, icon: XIcon },
-];
+type SocialIcon = ComponentType<SVGProps<SVGSVGElement>>;
+
+const socialIconByLabel: Record<OfficialLink["label"], SocialIcon> = {
+  Website: Globe,
+  GitHub: GitHubIcon,
+  LinkedIn: LinkedInIcon,
+  Medium: MediumIcon,
+  "DEV.to": DevToIcon,
+  X: XIcon,
+};
+
+const socialLinks = officialLinks.map((link) => ({
+  ...link,
+  icon: socialIconByLabel[link.label],
+}));
 
 export function Footer() {
   const year = new Date().getFullYear();

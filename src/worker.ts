@@ -26,7 +26,7 @@ const SECURITY_HEADERS: Record<string, string> = {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com data:",
     "img-src 'self' https://pedumo.com data: blob:",
-    "connect-src 'self' https://liveformhq.com https://pedumo.com",
+    "connect-src 'self' https://liveformhq.com https://pedumo.com https://api.github.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self' https://liveformhq.com mailto:",

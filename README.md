@@ -72,7 +72,7 @@ Before release, verify:
 
 Future integrations should connect data already modeled in `src/lib/content.ts`:
 
-- GitHub repositories and activity for `/open-source` and homepage activity
+- GitHub repositories and activity for `/open-source` and homepage activity. The current frontend uses the public unauthenticated GitHub API for repository metadata where public repositories exist, and falls back to explicit pending states when metadata is unavailable.
 - DEV.to and Medium feeds for `/journal`
 - Email subscription backend for newsletter
 

@@ -41,6 +41,22 @@ export const siteConfig = {
   },
 } as const;
 
+export type OfficialLink = {
+  label: "Website" | "GitHub" | "LinkedIn" | "Medium" | "DEV.to" | "X";
+  href: string;
+};
+
+export const officialLinks: OfficialLink[] = [
+  { label: "Website", href: siteConfig.socials.website },
+  { label: "GitHub", href: siteConfig.socials.github },
+  { label: "LinkedIn", href: siteConfig.socials.linkedin },
+  { label: "Medium", href: siteConfig.socials.medium },
+  { label: "DEV.to", href: siteConfig.socials.dev },
+  { label: "X", href: siteConfig.socials.x },
+];
+
+export const trustIndicatorLinks = officialLinks.filter((link) => link.label !== "Website");
+
 export type NavItem = {
   label: string;
   href: string;

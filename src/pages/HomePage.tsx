@@ -1,3 +1,4 @@
+import type { ComponentType, SVGProps } from "react";
 import { ArrowRight, ArrowUpRight, Globe } from "lucide-react";
 import { Hero } from "@/components/home/hero";
 import { Section, SectionHeading } from "@/components/section";
@@ -11,20 +12,20 @@ import { Badge } from "@/components/ui/badge";
 import { FounderPortrait } from "@/components/founder-portrait";
 import { DevToIcon, GitHubIcon, LinkedInIcon, MediumIcon, XIcon } from "@/components/social-icons";
 import { NewsletterForm } from "@/components/newsletter-form";
+import { RepositoryGrid } from "@/components/open-source-repositories";
+import { EngineeringActivityFeed } from "@/components/engineering-activity-feed";
 import { Seo } from "@/components/seo";
 import {
   businessOutcomes,
   capabilities,
   caseStudies,
-  engineeringActivity,
   engineeringPrinciples,
   faqs,
   industries,
   insights,
-  openSourceRepositories,
   trustPillars,
 } from "@/lib/content";
-import { FOUNDER_IMAGE, siteConfig } from "@/lib/site";
+import { FOUNDER_IMAGE, siteConfig, trustIndicatorLinks, type OfficialLink } from "@/lib/site";
 import { hrefOf } from "@/hooks/useHashRoute";
 
 function formatDate(date: string) {
@@ -45,13 +46,21 @@ const faqSchema = {
   })),
 };
 
-const trustIndicators = [
-  { label: "GitHub", href: siteConfig.socials.github, icon: GitHubIcon },
-  { label: "LinkedIn", href: siteConfig.socials.linkedin, icon: LinkedInIcon },
-  { label: "Medium", href: siteConfig.socials.medium, icon: MediumIcon },
-  { label: "DEV.to", href: siteConfig.socials.dev, icon: DevToIcon },
-  { label: "X", href: siteConfig.socials.x, icon: XIcon },
-];
+type SocialIcon = ComponentType<SVGProps<SVGSVGElement>>;
+
+const socialIconByLabel: Record<OfficialLink["label"], SocialIcon> = {
+  Website: Globe,
+  GitHub: GitHubIcon,
+  LinkedIn: LinkedInIcon,
+  Medium: MediumIcon,
+  "DEV.to": DevToIcon,
+  X: XIcon,
+};
+
+const trustIndicators = trustIndicatorLinks.map((link) => ({
+  ...link,
+  icon: socialIconByLabel[link.label],
+}));
 
 const orgSchema = {
   "@context": "https://schema.org",
@@ -156,31 +165,8 @@ export function HomePage() {
             </ButtonLink>
           </Reveal>
         </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {openSourceRepositories.map((repo, i) => (
-            <Reveal key={repo.id} delay={(i % 3) * 0.05}>
-              <article className="flex h-full flex-col rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 edge-highlight">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="inline-grid h-11 w-11 place-items-center rounded-2xl border border-[var(--border)] bg-[var(--background-elevated)] text-brand-300">
-                    <repo.icon className="h-5 w-5" aria-hidden />
-                  </span>
-                  <Badge>{repo.area}</Badge>
-                </div>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight">{repo.name}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--muted)]">
-                  {repo.description}
-                </p>
-                <p className="mt-4 text-xs text-[var(--muted)]">{repo.status}</p>
-                <a
-                  href={hrefOf("/open-source", repo.id)}
-                  className="mt-4 inline-flex min-h-[44px] items-center gap-2 self-start text-sm font-semibold text-brand-300 underline-offset-4 hover:underline"
-                  aria-label={`View ${repo.name} repository details`}
-                >
-                  View Repository →
-                </a>
-              </article>
-            </Reveal>
-          ))}
+        <div className="mt-12">
+          <RepositoryGrid variant="compact" />
         </div>
       </Section>
 
@@ -193,19 +179,7 @@ export function HomePage() {
             description="A data-driven activity surface prepared for GitHub events, documentation releases and research updates. Current entries are manually curated until integration is configured."
             className="!mx-0"
           />
-          <div className="space-y-3">
-            {engineeringActivity.map((item, i) => (
-              <Reveal key={item.title} delay={i * 0.04}>
-                <article className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-5 edge-highlight">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                    <h3 className="text-lg font-semibold tracking-tight">{item.title}</h3>
-                    <Badge>{item.area}</Badge>
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{item.description}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+          <EngineeringActivityFeed />
         </div>
       </Section>
 

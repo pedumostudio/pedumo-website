@@ -49,6 +49,28 @@ Branch: `arena/019fd290-pedumo-website`
 - Branded social icons for unsupported networks were unnecessary once social links were corrected.
 - `framer-motion` was listed in dependencies but not imported anywhere in `src`.
 
+## Follow-up Audit on Current Platform
+
+### Broken links / missing pages
+
+- Internal route scan found no missing route bases for the active clean-path navigation set.
+- Referenced public assets exist in `public/`.
+
+### Duplicate code
+
+- Homepage and footer each maintained their own social/trust link arrays before this follow-up pass.
+
+### Dead components / unused JS
+
+- `processIcons` was exported from `src/lib/content.ts` but was not imported anywhere.
+- `Search` and `PenTool` icon imports only existed to support that unused export.
+
+### SEO / performance / accessibility observations
+
+- Static and dynamic SEO metadata remain in place.
+- The open-source section was data-modeled but did not yet attempt real public GitHub metadata loading.
+- Lighthouse still cannot run in this sandbox because no Chrome/Chromium executable is installed.
+
 ## Changes Implemented
 
 - Added clean path routing with legacy `#/route` migration support.
@@ -59,6 +81,10 @@ Branch: `arena/019fd290-pedumo-website`
 - Rebuilt footer around Products, Engineering, Open Source, Resources, Company, Legal, Newsletter, Social Links and Copyright.
 - Updated `/insights` into a knowledge hub with the four requested seeded articles.
 - Added data models for future GitHub, activity, journal and feed integrations.
+- Added a public GitHub metadata adapter for repository cards and homepage engineering activity fallback states.
+- Centralized official trust/social links to avoid duplicated social URL definitions.
+- Removed unused `processIcons` dead export and its unused icon imports.
+- Updated Cloudflare CSP headers to allow public GitHub API metadata requests.
 - Updated SEO metadata, structured data, sitemap, robots and web manifest.
 - Added a deterministic `public/og.png` Open Graph image.
 - Removed unused `framer-motion` dependency.
@@ -82,6 +108,10 @@ Results:
 - TypeScript validation completed with no errors.
 - Production build completed successfully.
 - `npm audit --audit-level=low` reported zero vulnerabilities.
+- Internal link route scan found no missing route bases.
+- Public asset reference scan found no missing public assets.
+- Unsupported social reference scan found no Facebook, Instagram, TikTok, Discord, Spotify or previous incorrect Pedumo social URLs in active source/config files.
+- Public GitHub API check for `pedumo/pedumo-website` returned HTTP 200 with repository metadata.
 - Clean route requests for `/`, `/services`, `/insights`, `/open-source`, `/journal`, `/about`, `/founder`, `/case-studies`, `/security`, `/contact`, `/book`, `/status`, `/privacy` and `/terms` returned the built SPA shell from Vite preview.
 - Lighthouse could not run in this sandbox because no Chrome/Chromium executable is installed for the Lighthouse CLI.
 
